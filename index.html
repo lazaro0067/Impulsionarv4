@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impulsionar - Ecossistema Completo (v63.0)</title>
+    <title>Impulsionar - Ecossistema Completo (v63.2)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Biblioteca PDF.js para leitura e extração de texto de arquivos PDF -->
@@ -568,6 +568,28 @@
                     <div id="empresa-talentos-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                 </section>
 
+                <!-- NOVA SEÇÃO: ENTREVISTAS AGENDADAS -->
+                <section id="sec-empresa-entrevistas" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-800"><i class="fa-solid fa-calendar-check mr-2 text-indigo-600"></i>Entrevistas Agendadas</h2>
+                            <p class="text-xs text-slate-500">Acompanhe as entrevistas marcadas com os talentos e seus respectivos links de videochamada.</p>
+                        </div>
+                    </div>
+                    <div id="empresa-entrevistas-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </section>
+
+                <!-- NOVA SEÇÃO: HISTÓRICO DE ENTREVISTAS -->
+                <section id="sec-empresa-historico" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-800"><i class="fa-solid fa-clock-rotate-left mr-2 text-indigo-600"></i>Histórico de Entrevistas (Reprovados / Concluídos)</h2>
+                            <p class="text-xs text-slate-500">Histórico de candidatos que passaram pelo processo de triagem ou foram reprovados.</p>
+                        </div>
+                    </div>
+                    <div id="empresa-historico-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </section>
+
                 <section id="sec-empresa-experiencia" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <div>
@@ -695,12 +717,12 @@
                     <textarea id="ent-obs" required rows="3" class="w-full border rounded-lg p-2.5">Entrevista de 1ª Triagem via Sala de Videochamada Impulsionar.</textarea>
                 </div>
                 <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-xs text-indigo-900">
-                    <p class="font-bold">✨ Videochamada Integrada:</p>
-                    <p>Ao confirmar o agendamento, um link seguro de videochamada para a 1ª triagem será gerado e enviado ao candidato.</p>
+                    <p class="font-bold">✨ Convite Automático:</p>
+                    <p>Ao confirmar o agendamento, o horário e o link seguro de videochamada serão gerados e enviados automaticamente para o chat do candidato (sem iniciar chamada automática).</p>
                 </div>
                 <div class="flex justify-end space-x-2 pt-2">
                     <button type="button" onclick="fecharModal('modal-agendar-entrevista')" class="px-4 py-2 text-slate-500">Cancelar</button>
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Confirmar Agendamento & Videochamada</button>
+                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Confirmar Agendamento</button>
                 </div>
             </form>
         </div>
@@ -1186,7 +1208,6 @@
         }
 
         function processarTextoCurriculo(texto, file) {
-            // Tentar extrair e preencher inteligentemente nos campos editáveis
             document.getElementById('cur-nome').value = usuarioAtual.name || '';
             document.getElementById('cur-email').value = usuarioAtual.email || '';
             document.getElementById('cur-whats').value = usuarioAtual.whatsApp || '';
@@ -1304,6 +1325,8 @@
                     <a href="#" onclick="mudarSecao('empresa-vagas')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-briefcase w-5"></i><span>Vagas Cadastradas</span></a>
                     <a href="#" onclick="mudarSecao('mensagens')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-envelope w-5"></i><span>Mensagens & Avisos</span></a>
                     <a href="#" onclick="mudarSecao('empresa-talentos')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-address-book w-5"></i><span>Vitrine & Currículos</span></a>
+                    <a href="#" onclick="mudarSecao('empresa-entrevistas')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-calendar-check w-5"></i><span>Entrevistas Agendadas</span></a>
+                    <a href="#" onclick="mudarSecao('empresa-historico')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-clock-rotate-left w-5"></i><span>Histórico de Entrevistas</span></a>
                     <a href="#" onclick="mudarSecao('empresa-experiencia')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-shield-halved w-5"></i><span>Pós-Contratação (3 Meses)</span></a>
                 `;
 
@@ -1314,6 +1337,8 @@
                     mudarSecao('empresa-talentos');
                     renderEmpresaJobs();
                     renderEmpresaTalentos();
+                    renderEmpresaEntrevistas();
+                    renderEmpresaHistorico();
                     renderEmpresaHirings();
                     renderMessages();
                 }
@@ -1321,7 +1346,7 @@
         }
 
         function mudarSecao(id) {
-            ['sec-perfil-cliente', 'sec-perfil-empresa', 'sec-mensagens', 'sec-master-clients', 'sec-master-client-detail', 'sec-master-empresas', 'sec-master-cursos', 'sec-master-videos', 'sec-master-curadoria', 'sec-master-consultoria', 'sec-master-lixo', 'sec-client-cursos', 'sec-client-videos', 'sec-client-testes', 'sec-client-curriculo', 'sec-client-vagas', 'sec-client-consultor', 'sec-empresa-vagas', 'sec-empresa-talentos', 'sec-empresa-experiencia'].forEach(s => {
+            ['sec-perfil-cliente', 'sec-perfil-empresa', 'sec-mensagens', 'sec-master-clients', 'sec-master-client-detail', 'sec-master-empresas', 'sec-master-cursos', 'sec-master-videos', 'sec-master-curadoria', 'sec-master-consultoria', 'sec-master-lixo', 'sec-client-cursos', 'sec-client-videos', 'sec-client-testes', 'sec-client-curriculo', 'sec-client-vagas', 'sec-client-consultor', 'sec-empresa-vagas', 'sec-empresa-talentos', 'sec-empresa-entrevistas', 'sec-empresa-historico', 'sec-empresa-experiencia'].forEach(s => {
                 const el = document.getElementById(s);
                 if(el) el.classList.add('hidden');
             });
@@ -1330,6 +1355,10 @@
 
             if (id === 'empresa-talentos') {
                 renderEmpresaTalentos();
+            } else if (id === 'empresa-entrevistas') {
+                renderEmpresaEntrevistas();
+            } else if (id === 'empresa-historico') {
+                renderEmpresaHistorico();
             } else if (id === 'perfil-cliente') {
                 document.getElementById('cli-nome').value = usuarioAtual.name || '';
                 document.getElementById('cli-email').value = usuarioAtual.email || '';
@@ -1520,6 +1549,7 @@
         function abrirModalAgendarEntrevista(candidaturaId) {
             document.getElementById('ent-cand-id').value = candidaturaId;
             document.getElementById('ent-data').value = '';
+            document.getElementById('ent-obs').value = `Entrevista de 1ª Triagem via Sala de Videochamada Impulsionar.\nLink da Sala: https://meet.impulsionar.com/sala-${Math.floor(Math.random() * 90000 + 10000)}`;
             abrirModal('modal-agendar-entrevista');
         }
 
@@ -1532,28 +1562,30 @@
 
             if (cand) {
                 cand.status = `Entrevista Agendada para ${dataEntrevista.replace('T', ' às ')}`;
+                cand.dataEntrevista = dataEntrevista;
+                cand.detalhesEntrevista = obs;
                 localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
                 
                 dbChat.push({
                     id: Date.now(),
                     remetente: `${usuarioAtual.name} (Recrutamento)`,
-                    texto: `Entrevista (1ª Triagem) agendada para ${dataEntrevista.replace('T', ' às ')} referente à vaga "${cand.vagaTitulo}". ${obs}`,
+                    texto: `Convite de Entrevista (1ª Triagem) agendada para ${dataEntrevista.replace('T', ' às ')} referente à vaga "${cand.vagaTitulo}".\n\nDetalhes / Link:\n${obs}`,
                     data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
                 });
                 localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
 
                 fecharModal('modal-agendar-entrevista');
                 renderEmpresaTalentos();
-                alert('Entrevista de 1ª Triagem agendada com sucesso!');
-                iniciarVideochamada();
+                renderEmpresaEntrevistas();
+                alert('Entrevista de 1ª Triagem agendada com sucesso! O candidato foi transferido para a área de Entrevistas Agendadas.');
             }
         }
 
         function reprovarCandidato(candidaturaId) {
-            if (confirm('Tem certeza que deseja reprovar este candidato para esta vaga? O sistema enviará a mensagem automática de retorno.')) {
+            if (confirm('Tem certeza que deseja reprovar este candidato? Ele será movido para o Histórico de Entrevistas.')) {
                 const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
                 if (cand) {
-                    cand.status = 'Reprovado / Banco de Talentos';
+                    cand.status = 'Reprovado / Concluído';
                     localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
 
                     dbChat.push({
@@ -1565,7 +1597,9 @@
                     localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
 
                     renderEmpresaTalentos();
-                    alert('Candidato reprovado e feedback automático enviado.');
+                    renderEmpresaEntrevistas();
+                    renderEmpresaHistorico();
+                    alert('Candidato reprovado e movido para o Histórico de Entrevistas.');
                 }
             }
         }
@@ -1619,6 +1653,76 @@
             });
 
             if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma candidatura liberada pelo Consultor para a sua empresa no momento.</p>';
+        }
+
+        function renderEmpresaEntrevistas() {
+            const grid = document.getElementById('empresa-entrevistas-grid');
+            grid.innerHTML = '';
+
+            let candidaturasAgendadas = dbCandidaturas.filter(c => c.empresa === usuarioAtual.name && c.status.includes('Entrevista Agendada'));
+
+            candidaturasAgendadas.forEach(cand => {
+                const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail, foto: '' };
+                let fotoTalento = c.foto ? `<img src="${c.foto}" class="w-10 h-10 rounded-full object-cover">` : `<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-xs"><i class="fa-solid fa-user"></i></div>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-3 text-sm shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                ${fotoTalento}
+                                <div>
+                                    <strong>${c.name}</strong> 
+                                    <p class="text-xs text-slate-400">(${c.email})</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2 py-1 rounded uppercase">VAGA: ${cand.vagaTitulo}</span>
+                        </div>
+                        <div class="text-xs bg-indigo-50 p-3 rounded-lg border border-indigo-100 space-y-1">
+                            <p class="font-bold text-indigo-950">📅 ${cand.status}</p>
+                            <p class="text-slate-700 whitespace-pre-line"><strong>Detalhes / Link:</strong> ${cand.detalhesEntrevista || 'N/D'}</p>
+                        </div>
+                        <div class="pt-2 border-t flex flex-wrap gap-2">
+                            <button onclick="verDetalhesCandidato(${cand.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Ver Currículo</button>
+                            <button onclick="reprovarCandidato(${cand.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Reprovar / Mover para Histórico</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma entrevista agendada no momento.</p>';
+        }
+
+        function renderEmpresaHistorico() {
+            const grid = document.getElementById('empresa-historico-grid');
+            grid.innerHTML = '';
+
+            let candidaturasHistorico = dbCandidaturas.filter(c => c.empresa === usuarioAtual.name && c.status.includes('Reprovado'));
+
+            candidaturasHistorico.forEach(cand => {
+                const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail, foto: '' };
+                let fotoTalento = c.foto ? `<img src="${c.foto}" class="w-10 h-10 rounded-full object-cover">` : `<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-xs"><i class="fa-solid fa-user"></i></div>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-3 text-sm shadow-sm opacity-90">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                ${fotoTalento}
+                                <div>
+                                    <strong>${c.name}</strong> 
+                                    <p class="text-xs text-slate-400">(${c.email})</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] bg-red-50 text-red-700 font-bold px-2 py-1 rounded uppercase">VAGA: ${cand.vagaTitulo}</span>
+                        </div>
+                        <p class="text-xs text-slate-500"><strong>Status:</strong> ${cand.status}</p>
+                        <div class="pt-2 border-t">
+                            <button onclick="verDetalhesCandidato(${cand.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Ver Detalhes do Talento</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhum registro no histórico de entrevistas.</p>';
         }
 
         function salvarPerfilCliente(e) {
@@ -1700,6 +1804,8 @@
                     mudarSecao('empresa-talentos');
                     renderEmpresaJobs();
                     renderEmpresaTalentos();
+                    renderEmpresaEntrevistas();
+                    renderEmpresaHistorico();
                     renderEmpresaHirings();
                 }, 1500);
             };
