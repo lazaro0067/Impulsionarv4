@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impulsionar - Ecossistema Completo (v63.3)</title>
+    <title>Impulsionar - Ecossistema Completo (v63.0)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Biblioteca PDF.js para leitura e extração de texto de arquivos PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -143,12 +144,15 @@
                                 </div>
                             </div>
 
+                            <!-- SEÇÃO EXPERIÊNCIA PROFISSIONAL -->
                             <div class="space-y-4 pt-4 border-t">
                                 <div class="flex justify-between items-center">
                                     <h3 class="font-bold text-indigo-900 text-xs uppercase"><i class="fa-solid fa-briefcase mr-1"></i> Experiência Profissional</h3>
                                     <button type="button" onclick="adicionarCampoExperiencia()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fa-solid fa-plus mr-1"></i> Adicionar Experiência</button>
                                 </div>
-                                <div id="container-experiencias" class="space-y-4"></div>
+                                <div id="container-experiencias" class="space-y-4">
+                                    <!-- Os campos de experiência serão injetados dinamicamente aqui -->
+                                </div>
                             </div>
 
                             <div class="space-y-4 pt-4 border-t">
@@ -343,6 +347,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Chat Consultor -->
                         <div class="bg-white p-5 rounded-xl border shadow-sm flex flex-col h-[500px]">
                             <h3 class="font-bold text-indigo-950 mb-2">Bate-Papo com Talentos (Chat em Tempo Real)</h3>
                             <div id="master-chat-box" class="flex-1 bg-slate-50 border rounded-lg p-3 overflow-y-auto space-y-3 mb-3"></div>
@@ -356,6 +361,7 @@
                             </form>
                         </div>
 
+                        <!-- Consultorias & Videochamada Consultor -->
                         <div class="bg-white p-5 rounded-xl border shadow-sm flex flex-col space-y-4">
                             <h3 class="font-bold text-indigo-950">Consultorias & Sala de Videochamada</h3>
                             <div class="space-y-2">
@@ -416,6 +422,7 @@
                     </div>
                 </section>
 
+                <!-- SEÇÃO MEU CURRÍCULO COM LEITURA AUTOMÁTICA E EDITÁVEL -->
                 <section id="sec-client-curriculo" class="space-y-6 hidden">
                     <div class="bg-white p-6 rounded-xl border space-y-6 max-w-3xl mx-auto shadow-sm">
                         <div class="flex justify-between items-center border-b pb-3">
@@ -428,12 +435,14 @@
 
                         <div id="feedback-curriculo" class="hidden p-3 rounded-lg text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200"></div>
 
+                        <!-- Upload Inteligente que Lê e Preenche -->
                         <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-xl space-y-3">
                             <label class="block text-xs font-bold uppercase text-indigo-950"><i class="fa-solid fa-file-arrow-up mr-1"></i> Enviar Arquivo de Currículo (PDF, Word, TXT) - Leitura Automática</label>
                             <input type="file" id="cli-resume-file" class="w-full border rounded-lg p-2.5 bg-white text-xs" accept=".pdf,.doc,.docx,.txt" onchange="lerCurriculoUpload(event)">
                             <p class="text-[11px] text-indigo-700">Ao anexar seu arquivo, o texto será lido instantaneamente e distribuído nos campos editáveis abaixo para revisão!</p>
                         </div>
 
+                        <!-- Formulário Editável com o Mesmo Formato -->
                         <form onsubmit="salvarCurriculoCliente(event)" class="space-y-6 text-sm">
                             <div class="space-y-4">
                                 <h3 class="font-bold text-indigo-900 border-b pb-1 text-xs uppercase">Dados Pessoais & Contato</h3>
@@ -463,14 +472,18 @@
                                 </div>
                             </div>
 
+                            <!-- Experiências Profissionais Extraídas / Editáveis -->
                             <div class="space-y-4 pt-4 border-t">
                                 <div class="flex justify-between items-center">
                                     <h3 class="font-bold text-indigo-900 text-xs uppercase"><i class="fa-solid fa-briefcase mr-1"></i> Experiência Profissional</h3>
                                     <button type="button" onclick="adicionarExperienciaCurriculo()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fa-solid fa-plus mr-1"></i> Adicionar Experiência</button>
                                 </div>
-                                <div id="container-experiencias-curriculo" class="space-y-4"></div>
+                                <div id="container-experiencias-curriculo" class="space-y-4">
+                                    <!-- Campos injetados -->
+                                </div>
                             </div>
 
+                            <!-- Formação e Habilidades -->
                             <div class="space-y-4 pt-4 border-t">
                                 <h3 class="font-bold text-indigo-900 text-xs uppercase">Formação Acadêmica & Habilidades</h3>
                                 <div>
@@ -495,6 +508,7 @@
                     <div id="client-vagas-container" class="space-y-6"></div>
                 </section>
 
+                <!-- ABA INTERAÇÃO / CONSULTOR (ALUNO) -->
                 <section id="sec-client-consultor" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <div>
@@ -504,6 +518,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Chat em Tempo Real -->
                         <div class="bg-white p-5 rounded-xl border shadow-sm flex flex-col h-[500px]">
                             <h3 class="font-bold text-indigo-950 mb-2">Bate-Papo ao Vivo com o Consultor</h3>
                             <div id="client-chat-box" class="flex-1 bg-slate-50 border rounded-lg p-3 overflow-y-auto space-y-3 mb-3"></div>
@@ -517,6 +532,7 @@
                             </form>
                         </div>
 
+                        <!-- Agendamento de Consultorias & Videochamada -->
                         <div class="bg-white p-5 rounded-xl border shadow-sm flex flex-col space-y-4">
                             <h3 class="font-bold text-indigo-950">Agendar Consultoria & Videochamada</h3>
                             <div class="space-y-2">
@@ -550,27 +566,6 @@
                 <section id="sec-empresa-talentos" class="space-y-6 hidden">
                     <h2 class="text-lg font-bold text-slate-800">Currículos & Vitrine de Talentos (Candidaturas Liberadas pelo Consultor)</h2>
                     <div id="empresa-talentos-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-                </section>
-
-                <!-- SEÇÃO ATUALIZADA: ENTREVISTAS AGENDADAS COM LINK RÁPIDO, DIÁLOGO E RESUMO AO CONSULTOR -->
-                <section id="sec-empresa-entrevistas" class="space-y-6 hidden">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-lg font-bold text-slate-800"><i class="fa-solid fa-calendar-check mr-2 text-indigo-600"></i>Entrevistas Agendadas</h2>
-                            <p class="text-xs text-slate-500">Envie o link de videochamada por mensagem, dialogue com o candidato e envie o resumo para o consultor.</p>
-                        </div>
-                    </div>
-                    <div id="empresa-entrevistas-grid" class="grid grid-cols-1 gap-6"></div>
-                </section>
-
-                <section id="sec-empresa-historico" class="space-y-6 hidden">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-lg font-bold text-slate-800"><i class="fa-solid fa-clock-rotate-left mr-2 text-indigo-600"></i>Histórico de Entrevistas (Reprovados / Concluídos)</h2>
-                            <p class="text-xs text-slate-500">Histórico de candidatos que passaram pelo processo de triagem ou foram reprovados.</p>
-                        </div>
-                    </div>
-                    <div id="empresa-historico-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                 </section>
 
                 <section id="sec-empresa-experiencia" class="space-y-6 hidden">
@@ -700,12 +695,12 @@
                     <textarea id="ent-obs" required rows="3" class="w-full border rounded-lg p-2.5">Entrevista de 1ª Triagem via Sala de Videochamada Impulsionar.</textarea>
                 </div>
                 <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-xs text-indigo-900">
-                    <p class="font-bold">✨ Convite Automático:</p>
-                    <p>Ao confirmar o agendamento, o horário e o link seguro de videochamada serão gerados e enviados automaticamente para o chat do candidato.</p>
+                    <p class="font-bold">✨ Videochamada Integrada:</p>
+                    <p>Ao confirmar o agendamento, um link seguro de videochamada para a 1ª triagem será gerado e enviado ao candidato.</p>
                 </div>
                 <div class="flex justify-end space-x-2 pt-2">
                     <button type="button" onclick="fecharModal('modal-agendar-entrevista')" class="px-4 py-2 text-slate-500">Cancelar</button>
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Confirmar Agendamento</button>
+                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Confirmar Agendamento & Videochamada</button>
                 </div>
             </form>
         </div>
@@ -901,6 +896,7 @@
                     </div>
                 </div>
 
+                <!-- BENEFÍCIOS DINÂMICOS -->
                 <div class="space-y-2 bg-slate-50 p-3 rounded-lg border">
                     <div class="flex justify-between items-center">
                         <label class="block text-xs font-semibold uppercase text-slate-600">Benefícios da Vaga</label>
@@ -944,7 +940,7 @@
             { id: 999, title: 'GERENTE DE OPERACAOES', empresa: 'TechCorp Brasil', aprovado: true }
         ];
         let dbCandidaturas = JSON.parse(localStorage.getItem('imp_db_candidaturas')) || [
-            { id: 1, vagaId: 999, vagaTitulo: 'GERENTE DE OPERACAOES', empresa: 'TechCorp Brasil', talentoId: 3, talentoNome: 'Lazaro Neto', talentoEmail: 'lazaronettosalles0067@gmail.com', talentoDisc: 'Dominância (D)', talentoCurriculo: 'https://exemplo.com/curriculo.pdf', data: new Date().toLocaleDateString(), status: 'Entrevista Agendada para 2026-09-08 às 21:43', dataEntrevista: '2026-09-08T21:43', detalhesEntrevista: 'Entrevista de 1ª Triagem via Sala de Videochamada Impulsionar.\nLink da Sala: https://meet.impulsionar.com/sala-12345', historicoMensagens: [], resumoConsultor: '', dataCandidatura: Date.now() }
+            { id: 1, vagaId: 999, vagaTitulo: 'GERENTE DE OPERACAOES', empresa: 'TechCorp Brasil', talentoId: 3, talentoNome: 'Lazaro Neto', talentoEmail: 'lazaronettosalles0067@gmail.com', talentoDisc: 'Dominância (D)', talentoCurriculo: 'https://exemplo.com/curriculo.pdf', data: new Date().toLocaleDateString(), status: 'Liberado para o Recrutador', dataCandidatura: Date.now() }
         ];
         let dbHirings = JSON.parse(localStorage.getItem('imp_db_hirings')) || [];
         let dbChat = JSON.parse(localStorage.getItem('imp_db_chat')) || [
@@ -974,7 +970,9 @@
             el.innerText = mensagem;
             el.className = `p-3 rounded-lg text-xs font-medium border ${cor === 'red' ? 'bg-red-50 text-red-800 border-red-200' : 'bg-blue-50 text-blue-800 border-blue-200'}`;
             el.classList.remove('hidden');
-            setTimeout(() => { el.classList.add('hidden'); }, 5000);
+            setTimeout(() => {
+                el.classList.add('hidden');
+            }, 5000);
         }
 
         function mostrarFeedbackGeral(mensagem, secId, cor = 'blue') {
@@ -1057,12 +1055,13 @@
             }
         }
 
+        // GERENCIAR EXPERIÊNCIAS NO PERFIL
         function adicionarCampoExperiencia(exp = {}) {
             const container = document.getElementById('container-experiencias');
             const div = document.createElement('div');
             div.className = 'p-4 bg-slate-50 border rounded-xl space-y-3 relative item-experiencia';
             div.innerHTML = `
-                <button type="button" onclick="removerCampoExperiencia(this)" class="absolute top-3 right-3 text-red-500 hover:text-red-700 text-xs font-semibold" title="Remover"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" onclick="removerCampoExperiencia(this)" class="absolute top-3 right-3 text-red-500 hover:text-red-700 text-xs font-semibold" title="Remover Experiência"><i class="fa-solid fa-trash"></i></button>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Empresa</label>
@@ -1085,12 +1084,23 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Descrição das Atribuições</label>
-                    <textarea class="exp-atribuicoes w-full border rounded-lg p-2 text-xs bg-white" rows="2" placeholder="Descreva suas principais responsabilidades...">${exp.atribuicoes || ''}</textarea>
+                    <textarea class="exp-atribuicoes w-full border rounded-lg p-2 text-xs bg-white" rows="2" placeholder="Descreva suas principais responsabilidades e conquistas...">${exp.atribuicoes || ''}</textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Motivo da Saída</label>
+                        <input type="text" class="exp-motivo w-full border rounded-lg p-2 text-xs bg-white" placeholder="Ex: Busca de novos desafios..." value="${exp.motivoSaida || ''}">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Observações (Opcional)</label>
+                        <input type="text" class="exp-obs w-full border rounded-lg p-2 text-xs bg-white" placeholder="Observações adicionais..." value="${exp.obs || ''}">
+                    </div>
                 </div>
             `;
             container.appendChild(div);
         }
 
+        // GERENCIAR EXPERIÊNCIAS NA ABA CURRÍCULO
         function adicionarExperienciaCurriculo(exp = {}) {
             const container = document.getElementById('container-experiencias-curriculo');
             const div = document.createElement('div');
@@ -1107,30 +1117,49 @@
                         <input type="text" class="cur-exp-cargo w-full border rounded-lg p-2 text-xs bg-white" placeholder="Cargo" value="${exp.cargo || exp.funcao || ''}">
                     </div>
                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Início</label>
+                        <input type="text" class="cur-exp-inicio w-full border rounded-lg p-2 text-xs bg-white" placeholder="Ex: 2023" value="${exp.inicio || ''}">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Saída</label>
+                        <input type="text" class="cur-exp-saida w-full border rounded-lg p-2 text-xs bg-white" placeholder="Ex: 2025 ou Atual" value="${exp.saida || ''}">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold uppercase mb-1 text-slate-600">Atribuições & Atividades</label>
+                    <textarea class="cur-exp-atrib w-full border rounded-lg p-2 text-xs bg-white" rows="2" placeholder="Principais atividades realizadas...">${exp.atribuicoes || ''}</textarea>
+                </div>
             `;
             container.appendChild(div);
         }
 
+        // FUNÇÃO PARA CRIAR CURRÍCULO DO ZERO COM FORMATO PADRÃO
         function criarCurriculoDoZero() {
             document.getElementById('cur-nome').value = usuarioAtual.name || '';
             document.getElementById('cur-email').value = usuarioAtual.email || '';
             document.getElementById('cur-whats').value = usuarioAtual.whatsApp || '';
             document.getElementById('cur-profissao').value = usuarioAtual.profissao || 'Profissional Qualificado';
-            document.getElementById('cur-resumo').value = 'Profissional focado em resultados, com sólida experiência.';
-            document.getElementById('cur-formacao').value = 'Ensino Superior';
-            document.getElementById('cur-habilidades').value = 'Gestão, Liderança, Excel';
+            document.getElementById('cur-resumo').value = 'Profissional focado em resultados, com sólida experiência na área, buscando novos desafios e alta performance corporativa.';
+            document.getElementById('cur-formacao').value = 'Ensino Superior / Técnico (Preencha sua formação)';
+            document.getElementById('cur-habilidades').value = 'Trabalho em equipe, Orientação a resultados, Resolução de problemas, Pacote Office';
             
             const container = document.getElementById('container-experiencias-curriculo');
             container.innerHTML = '';
-            adicionarExperienciaCurriculo({ empresa: 'Exemplo S.A.', cargo: 'Analista' });
-            mostrarFeedback('feedback-curriculo', 'Modelo de currículo gerado com sucesso!', 'blue');
+            adicionarExperienciaCurriculo({ empresa: 'Exemplo Empresa S.A.', cargo: 'Analista Pleno', inicio: '2023', saida: 'Presente', atribuicoes: 'Responsável por melhoria de processos, suporte operacional e metas da equipe.' });
+            
+            mostrarFeedback('feedback-curriculo', 'Modelo padrão de currículo gerado com sucesso! Edite os campos conforme sua trajetória.', 'blue');
         }
 
+        // LEITURA INTELIGENTE DE UPLOAD DE CURRÍCULO (PDF, DOCX, TXT)
         async function lerCurriculoUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
+
             let textoExtraido = '';
             const reader = new FileReader();
+
             if (file.name.endsWith('.pdf')) {
                 reader.onload = async function() {
                     try {
@@ -1142,7 +1171,9 @@
                             textoExtraido += textContent.items.map(item => item.str).join(' ') + '\n';
                         }
                         processarTextoCurriculo(textoExtraido, file);
-                    } catch (err) { alert('Erro ao ler PDF.'); }
+                    } catch (err) {
+                        alert('Erro ao ler o PDF. Preencha ou tente outro arquivo.');
+                    }
                 };
                 reader.readAsArrayBuffer(file);
             } else {
@@ -1155,24 +1186,51 @@
         }
 
         function processarTextoCurriculo(texto, file) {
+            // Tentar extrair e preencher inteligentemente nos campos editáveis
             document.getElementById('cur-nome').value = usuarioAtual.name || '';
             document.getElementById('cur-email').value = usuarioAtual.email || '';
-            document.getElementById('cur-resumo').value = texto.substring(0, 300) + '...';
-            mostrarFeedback('feedback-curriculo', 'Currículo lido com sucesso!', 'blue');
+            document.getElementById('cur-whats').value = usuarioAtual.whatsApp || '';
+            document.getElementById('cur-resumo').value = texto.substring(0, 400) + '...';
+            document.getElementById('cur-habilidades').value = 'Extraído do currículo enviado';
+            
+            const container = document.getElementById('container-experiencias-curriculo');
+            container.innerHTML = '';
+            adicionarExperienciaCurriculo({ empresa: 'Empresa do Currículo', cargo: 'Cargo Anterior', inicio: '2022', saida: '2024', atribuicoes: texto.substring(0, 200) });
+
+            const readerFile = new FileReader();
+            readerFile.onload = function(evt) {
+                usuarioAtual.curriculo = evt.target.result;
+                localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+                localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
+            };
+            readerFile.readAsDataURL(file);
+
+            mostrarFeedback('feedback-curriculo', 'Currículo lido com sucesso! O conteúdo foi distribuído abaixo nos campos editáveis.', 'blue');
         }
 
-        function removerCampoExperiencia(btn) { btn.closest('.item-experiencia').remove(); }
+        function removerCampoExperiencia(btn) {
+            btn.closest('.item-experiencia').remove();
+        }
+
         function adicionarCampoBeneficio(valor = '') {
             const container = document.getElementById('container-beneficios');
             const div = document.createElement('div');
             div.className = 'flex space-x-2';
             div.innerHTML = `
-                <input type="text" placeholder="Ex: Vale Refeição" class="input-beneficio w-full border rounded-lg p-2 text-sm bg-white" value="${valor}">
+                <input type="text" placeholder="Ex: Vale Refeição, Plano de Saúde..." class="input-beneficio w-full border rounded-lg p-2 text-sm bg-white" value="${valor}">
                 <button type="button" onclick="removerCampoBeneficio(this)" class="bg-red-50 text-red-600 px-3 py-2 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
             `;
             container.appendChild(div);
         }
-        function removerCampoBeneficio(btn) { btn.parentElement.remove(); }
+
+        function removerCampoBeneficio(btn) {
+            const container = document.getElementById('container-beneficios');
+            if (container.children.length > 1) {
+                btn.parentElement.remove();
+            } else {
+                alert('A vaga precisa ter ao menos um campo de benefício.');
+            }
+        }
 
         function atualizarAvatarUI() {
             document.getElementById('user-session-name').innerText = usuarioAtual.name;
@@ -1185,7 +1243,7 @@
         }
 
         function empresaEstaComPerfilCompleto(emp) {
-            return emp && emp.cnpj && emp.cnpj.trim() !== '' && emp.representante && emp.representante.trim() !== '';
+            return emp && emp.cnpj && emp.cnpj.trim() !== '' && emp.representante && emp.representante.trim() !== '' && emp.endereco && emp.endereco.trim() !== '';
         }
 
         function iniciarApp() {
@@ -1238,6 +1296,7 @@
                 renderClientChat();
                 renderClientAgenda();
                 resetDiscTestView();
+                carregarDadosCurriculoCliente();
             } else if (usuarioAtual.role === 'empresa') {
                 document.getElementById('header-role-badge').innerText = 'Portal da Empresa';
                 nav.innerHTML = `
@@ -1245,20 +1304,16 @@
                     <a href="#" onclick="mudarSecao('empresa-vagas')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-briefcase w-5"></i><span>Vagas Cadastradas</span></a>
                     <a href="#" onclick="mudarSecao('mensagens')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-envelope w-5"></i><span>Mensagens & Avisos</span></a>
                     <a href="#" onclick="mudarSecao('empresa-talentos')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-address-book w-5"></i><span>Vitrine & Currículos</span></a>
-                    <a href="#" onclick="mudarSecao('empresa-entrevistas')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-calendar-check w-5"></i><span>Entrevistas Agendadas</span></a>
-                    <a href="#" onclick="mudarSecao('empresa-historico')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-clock-rotate-left w-5"></i><span>Histórico de Entrevistas</span></a>
                     <a href="#" onclick="mudarSecao('empresa-experiencia')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-shield-halved w-5"></i><span>Pós-Contratação (3 Meses)</span></a>
                 `;
 
                 if (!empresaEstaComPerfilCompleto(usuarioAtual)) {
-                    mostrarFeedbackGeral('Preencha os dados corporativos obrigatórios.', 'perfil-empresa', 'red');
+                    mostrarFeedbackGeral('Bem-vindo! Como este é o seu primeiro acesso ou seu perfil está incompleto, preencha os dados corporativos obrigatórios.', 'perfil-empresa', 'red');
                     mudarSecao('perfil-empresa');
                 } else {
                     mudarSecao('empresa-talentos');
                     renderEmpresaJobs();
                     renderEmpresaTalentos();
-                    renderEmpresaEntrevistas();
-                    renderEmpresaHistorico();
                     renderEmpresaHirings();
                     renderMessages();
                 }
@@ -1266,29 +1321,169 @@
         }
 
         function mudarSecao(id) {
-            ['sec-perfil-cliente', 'sec-perfil-empresa', 'sec-mensagens', 'sec-master-clients', 'sec-master-client-detail', 'sec-master-empresas', 'sec-master-cursos', 'sec-master-videos', 'sec-master-curadoria', 'sec-master-consultoria', 'sec-master-lixo', 'sec-client-cursos', 'sec-client-videos', 'sec-client-testes', 'sec-client-curriculo', 'sec-client-vagas', 'sec-client-consultor', 'sec-empresa-vagas', 'sec-empresa-talentos', 'sec-empresa-entrevistas', 'sec-empresa-historico', 'sec-empresa-experiencia'].forEach(s => {
+            ['sec-perfil-cliente', 'sec-perfil-empresa', 'sec-mensagens', 'sec-master-clients', 'sec-master-client-detail', 'sec-master-empresas', 'sec-master-cursos', 'sec-master-videos', 'sec-master-curadoria', 'sec-master-consultoria', 'sec-master-lixo', 'sec-client-cursos', 'sec-client-videos', 'sec-client-testes', 'sec-client-curriculo', 'sec-client-vagas', 'sec-client-consultor', 'sec-empresa-vagas', 'sec-empresa-talentos', 'sec-empresa-experiencia'].forEach(s => {
                 const el = document.getElementById(s);
                 if(el) el.classList.add('hidden');
             });
             const target = document.getElementById(`sec-${id}`);
             if(target) target.classList.remove('hidden');
 
-            if (id === 'empresa-talentos') renderEmpresaTalentos();
-            else if (id === 'empresa-entrevistas') renderEmpresaEntrevistas();
-            else if (id === 'empresa-historico') renderEmpresaHistorico();
+            if (id === 'empresa-talentos') {
+                renderEmpresaTalentos();
+            } else if (id === 'perfil-cliente') {
+                document.getElementById('cli-nome').value = usuarioAtual.name || '';
+                document.getElementById('cli-email').value = usuarioAtual.email || '';
+                document.getElementById('cli-nasc').value = usuarioAtual.dataNasc || '';
+                document.getElementById('cli-cpf').value = usuarioAtual.cpf || '';
+                document.getElementById('cli-whats').value = usuarioAtual.whatsApp || '';
+                document.getElementById('cli-endereco').value = usuarioAtual.endereco || '';
+                document.getElementById('cli-profissao').value = usuarioAtual.profissao || '';
+                document.getElementById('cli-proximo-passo').value = usuarioAtual.proximoPasso || '';
+                document.getElementById('cli-objetivo').value = usuarioAtual.objetivoProfissional || '';
+                document.getElementById('cli-senha').value = '';
+
+                const containerExp = document.getElementById('container-experiencias');
+                containerExp.innerHTML = '';
+                if (usuarioAtual.experiencias && usuarioAtual.experiencias.length > 0) {
+                    usuarioAtual.experiencias.forEach(exp => adicionarCampoExperiencia(exp));
+                } else {
+                    adicionarCampoExperiencia();
+                }
+
+                const preview = document.getElementById('profile-client-avatar-preview');
+                if (usuarioAtual.foto) {
+                    preview.innerHTML = `<img src="${usuarioAtual.foto}" class="w-full h-full object-cover">`;
+                } else {
+                    preview.innerHTML = `<i class="fa-solid fa-user text-xl"></i>`;
+                }
+            } else if (id === 'client-curriculo') {
+                carregarDadosCurriculoCliente();
+            } else if (id === 'perfil-empresa') {
+                document.getElementById('emp-nome').value = usuarioAtual.name || '';
+                document.getElementById('emp-representante').value = usuarioAtual.representante || '';
+                document.getElementById('emp-email').value = usuarioAtual.email || '';
+                document.getElementById('emp-cnpj').value = usuarioAtual.cnpj || '';
+                document.getElementById('emp-endereco').value = usuarioAtual.endereco || '';
+                document.getElementById('emp-qnt-funcionarios').value = usuarioAtual.qntFuncionarios || 'Até 30';
+                document.getElementById('emp-senha').value = '';
+
+                const alertBox = document.getElementById('empresa-profile-alert');
+                if (!empresaEstaComPerfilCompleto(usuarioAtual)) {
+                    alertBox.classList.remove('hidden');
+                } else {
+                    alertBox.classList.add('hidden');
+                }
+
+                const preview = document.getElementById('profile-emp-avatar-preview');
+                if (usuarioAtual.foto) {
+                    preview.innerHTML = `<img src="${usuarioAtual.foto}" class="w-full h-full object-cover">`;
+                } else {
+                    preview.innerHTML = `<i class="fa-solid fa-building text-xl"></i>`;
+                }
+            } else if (id === 'mensagens') {
+                renderMessages();
+            } else if (id === 'client-testes') {
+                resetDiscTestView();
+            } else if (id === 'client-consultor' || id === 'master-consultoria') {
+                renderClientChat();
+                renderMasterChat();
+                renderClientAgenda();
+                renderMasterAgenda();
+            }
         }
 
+        function carregarDadosCurriculoCliente() {
+            const obj = usuarioAtual.curriculoObj || {};
+            document.getElementById('cur-nome').value = obj.nome || usuarioAtual.name || '';
+            document.getElementById('cur-email').value = obj.email || usuarioAtual.email || '';
+            document.getElementById('cur-whats').value = obj.whats || usuarioAtual.whatsApp || '';
+            document.getElementById('cur-profissao').value = obj.profissao || usuarioAtual.profissao || '';
+            document.getElementById('cur-resumo').value = obj.resumo || usuarioAtual.objetivoProfissional || '';
+            document.getElementById('cur-formacao').value = obj.formacao || '';
+            document.getElementById('cur-habilidades').value = obj.habilidades || '';
+
+            const container = document.getElementById('container-experiencias-curriculo');
+            container.innerHTML = '';
+            const exps = obj.experiencias || usuarioAtual.experiencias || [];
+            if (exps.length > 0) {
+                exps.forEach(ex => adicionarExperienciaCurriculo(ex));
+            } else {
+                adicionarExperienciaCurriculo();
+            }
+        }
+
+        function salvarCurriculoCliente(e) {
+            e.preventDefault();
+            const curriculoObj = {
+                nome: document.getElementById('cur-nome').value.trim(),
+                email: document.getElementById('cur-email').value.trim(),
+                whats: document.getElementById('cur-whats').value.trim(),
+                profissao: document.getElementById('cur-profissao').value.trim(),
+                resumo: document.getElementById('cur-resumo').value.trim(),
+                formacao: document.getElementById('cur-formacao').value.trim(),
+                habilidades: document.getElementById('cur-habilidades').value.trim(),
+                experiencias: []
+            };
+
+            document.querySelectorAll('.item-exp-cur').forEach(item => {
+                curriculoObj.experiencias.push({
+                    empresa: item.querySelector('.cur-exp-emp').value.trim(),
+                    cargo: item.querySelector('.cur-exp-cargo').value.trim(),
+                    inicio: item.querySelector('.cur-exp-inicio').value.trim(),
+                    saida: item.querySelector('.cur-exp-saida').value.trim(),
+                    atribuicoes: item.querySelector('.cur-exp-atrib').value.trim()
+                });
+            });
+
+            usuarioAtual.curriculoObj = curriculoObj;
+            usuarioAtual.name = curriculoObj.nome;
+            usuarioAtual.whatsApp = curriculoObj.whats;
+            usuarioAtual.profissao = curriculoObj.profissao;
+            usuarioAtual.objetivoProfissional = curriculoObj.resumo;
+
+            const idx = dbUsers.findIndex(u => Number(u.id) === Number(usuarioAtual.id));
+            if (idx !== -1) dbUsers[idx] = usuarioAtual;
+            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+            localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
+
+            mostrarFeedback('feedback-curriculo', 'Currículo atualizado e salvo com sucesso no sistema!', 'blue');
+        }
+
+        // FUNÇÕES DA VITRINE DE TALENTOS (EMPRESA)
         function verDetalhesCandidato(candidaturaId) {
             const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
             if (!cand) return;
-            const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail, discPerfil: cand.talentoDisc };
+            const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail, discPerfil: cand.talentoDisc, curriculoObj: {}, experiencias: [] };
+            
+            let curObj = c.curriculoObj || {};
+            let expHtml = '';
+            if (curObj.experiencias && curObj.experiencias.length > 0) {
+                curObj.experiencias.forEach((ex, idx) => {
+                    expHtml += `
+                        <div class="bg-slate-50 p-3 rounded-lg border text-xs space-y-1 mb-2">
+                            <p><strong>Experiência ${idx+1}:</strong> ${ex.cargo || 'N/D'} na empresa <strong>${ex.empresa || 'N/D'}</strong> (${ex.inicio || 'N/D'} - ${ex.saida || 'N/D'})</p>
+                            <p><strong>Atribuições:</strong> ${ex.atribuicoes || 'N/D'}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                expHtml = `<p class="text-xs text-slate-500">Nenhuma experiência detalhada no currículo.</p>`;
+            }
+
             document.getElementById('detalhes-cand-titulo').innerText = `Detalhes do Talento: ${c.name}`;
             document.getElementById('detalhes-cand-conteudo').innerHTML = `
                 <p><strong>E-mail:</strong> ${c.email}</p>
-                <p><strong>Profissão:</strong> ${c.profissao || 'Não informada'}</p>
-                <p><strong>WhatsApp:</strong> ${c.whatsApp || 'Não informado'}</p>
+                <p><strong>Profissão:</strong> ${c.profissao || curObj.profissao || 'Não informada'}</p>
+                <p><strong>WhatsApp:</strong> ${c.whatsApp || curObj.whats || 'Não informado'}</p>
+                <p><strong>Resumo / Objetivo:</strong> ${c.objetivoProfissional || curObj.resumo || 'Não informado'}</p>
+                <p><strong>Formação Acadêmica:</strong> ${curObj.formacao || 'Não informada'}</p>
+                <p><strong>Habilidades:</strong> ${curObj.habilidades || 'Não informadas'}</p>
                 <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
                     <strong>Perfil DISC & Comportamental:</strong> ${c.discPerfil || 'Não realizado'}
+                </div>
+                <div>
+                    <strong class="block mb-1">Experiências Profissionais do Currículo:</strong>
+                    ${expHtml}
                 </div>
                 <p><strong>Vaga Aplicada:</strong> ${cand.vagaTitulo}</p>
                 <p><strong>Status Atual:</strong> ${cand.status}</p>
@@ -1309,13 +1504,6 @@
             const cand = dbCandidaturas.find(c => Number(c.id) === Number(candId));
             
             if (cand) {
-                if (!cand.historicoMensagens) cand.historicoMensagens = [];
-                cand.historicoMensagens.push({
-                    remetente: `${usuarioAtual.name} (Empresa)`,
-                    texto: texto,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
-                });
-
                 dbChat.push({
                     id: Date.now(),
                     remetente: `${usuarioAtual.name} (Empresa)`,
@@ -1323,102 +1511,15 @@
                     data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
                 });
                 localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
-                localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
-
                 fecharModal('modal-mensagem-candidato');
-                renderEmpresaEntrevistas();
-                alert(`Mensagem enviada com sucesso para o candidato ${cand.talentoNome} e registrada na vaga ofertada!`);
-            }
-        }
-
-        // Função específica para enviar link de videochamada rápido na aba de entrevistas
-        function enviarLinkVideorapido(candidaturaId) {
-            const inputLink = document.getElementById(`input-link-video-${candidaturaId}`);
-            const linkVal = inputLink.value.trim();
-            if (!linkVal) {
-                alert('Insira ou cole o link da videochamada antes de enviar.');
-                return;
-            }
-
-            const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
-            if (cand) {
-                if (!cand.historicoMensagens) cand.historicoMensagens = [];
-                const msgTexto = `🔗 Link da Videochamada enviado pela empresa: ${linkVal}`;
-                cand.historicoMensagens.push({
-                    remetente: `${usuarioAtual.name} (Empresa)`,
-                    texto: msgTexto,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
-                });
-
-                dbChat.push({
-                    id: Date.now(),
-                    remetente: `${usuarioAtual.name} (Empresa)`,
-                    texto: `[Convite de Vídeo] Vaga "${cand.vagaTitulo}": ${msgTexto}`,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
-                });
-                localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
-                localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
-
-                inputLink.value = '';
-                renderEmpresaEntrevistas();
-                alert('Link de videochamada enviado com sucesso para o chat do candidato e registrado na vaga ofertada!');
-            }
-        }
-
-        // Enviar mensagem pelo diálogo direto na aba de entrevistas
-        function enviarMensagemDiretaEntrevista(candidaturaId) {
-            const inputMsg = document.getElementById(`input-chat-entrevista-${candidaturaId}`);
-            const texto = inputMsg.value.trim();
-            if (!texto) return;
-
-            const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
-            if (cand) {
-                if (!cand.historicoMensagens) cand.historicoMensagens = [];
-                cand.historicoMensagens.push({
-                    remetente: `${usuarioAtual.name} (Empresa)`,
-                    texto: texto,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
-                });
-
-                dbChat.push({
-                    id: Date.now(),
-                    remetente: `${usuarioAtual.name} (Empresa)`,
-                    texto: `Vaga "${cand.vagaTitulo}": ${texto}`,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
-                });
-                localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
-                localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
-
-                inputMsg.value = '';
-                renderEmpresaEntrevistas();
-            }
-        }
-
-        // Salvar área de resumo para mandar ao consultor
-        function salvarResumoConsultor(candidaturaId) {
-            const inputResumo = document.getElementById(`textarea-resumo-${candidaturaId}`);
-            const resumoVal = inputResumo.value.trim();
-            const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
-            if (cand) {
-                cand.resumoConsultor = resumoVal;
-                localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
-
-                dbMessages.unshift({
-                    id: Date.now(),
-                    texto: `Resumo enviado pela empresa ${usuarioAtual.name} referente à entrevista do candidato ${cand.talentoNome} (Vaga: ${cand.vagaTitulo}): "${resumoVal}"`,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
-                    tipo: 'Resumo para Consultor'
-                });
-                localStorage.setItem('imp_db_messages', JSON.stringify(dbMessages));
-
-                alert('Resumo enviado com sucesso para o Consultor!');
+                alert(`Mensagem enviada com sucesso para o candidato ${cand.talentoNome}!`);
+                adicionarMensagemSistema(`Empresa ${usuarioAtual.name} enviou mensagem para o candidato ${cand.talentoNome} referente à vaga ${cand.vagaTitulo}.`, 'Mensagem ao Talento');
             }
         }
 
         function abrirModalAgendarEntrevista(candidaturaId) {
             document.getElementById('ent-cand-id').value = candidaturaId;
             document.getElementById('ent-data').value = '';
-            document.getElementById('ent-obs').value = `Entrevista de 1ª Triagem via Sala de Videochamada Impulsionar.\nLink da Sala: https://meet.impulsionar.com/sala-${Math.floor(Math.random() * 90000 + 10000)}`;
             abrirModal('modal-agendar-entrevista');
         }
 
@@ -1431,42 +1532,40 @@
 
             if (cand) {
                 cand.status = `Entrevista Agendada para ${dataEntrevista.replace('T', ' às ')}`;
-                cand.dataEntrevista = dataEntrevista;
-                cand.detalhesEntrevista = obs;
-                if (!cand.historicoMensagens) cand.historicoMensagens = [];
-                cand.historicoMensagens.push({
-                    remetente: `${usuarioAtual.name} (Recrutamento)`,
-                    texto: `Convite de Entrevista agendada para ${dataEntrevista.replace('T', ' às ')}.\nDetalhes/Link: ${obs}`,
-                    data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
-                });
-
                 localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
                 
                 dbChat.push({
                     id: Date.now(),
                     remetente: `${usuarioAtual.name} (Recrutamento)`,
-                    texto: `Convite de Entrevista agendada para ${dataEntrevista.replace('T', ' às ')} referente à vaga "${cand.vagaTitulo}".`,
+                    texto: `Entrevista (1ª Triagem) agendada para ${dataEntrevista.replace('T', ' às ')} referente à vaga "${cand.vagaTitulo}". ${obs}`,
                     data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
                 });
                 localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
 
                 fecharModal('modal-agendar-entrevista');
                 renderEmpresaTalentos();
-                renderEmpresaEntrevistas();
-                alert('Entrevista agendada com sucesso!');
+                alert('Entrevista de 1ª Triagem agendada com sucesso!');
+                iniciarVideochamada();
             }
         }
 
         function reprovarCandidato(candidaturaId) {
-            if (confirm('Tem certeza que deseja reprovar este candidato? Ele será movido para o Histórico de Entrevistas.')) {
+            if (confirm('Tem certeza que deseja reprovar este candidato para esta vaga? O sistema enviará a mensagem automática de retorno.')) {
                 const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
                 if (cand) {
-                    cand.status = 'Reprovado / Concluído';
+                    cand.status = 'Reprovado / Banco de Talentos';
                     localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
+
+                    dbChat.push({
+                        id: Date.now(),
+                        remetente: 'Sistema Impulsionar (Recrutamento)',
+                        texto: `Olá ${cand.talentoNome}, agradecemos imensamente o seu interesse na vaga "${cand.vagaTitulo}". Neste momento, informamos que o seu perfil não se enquadra na vaga ofertada. Continue evoluindo conosco!`,
+                        data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+                    });
+                    localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
+
                     renderEmpresaTalentos();
-                    renderEmpresaEntrevistas();
-                    renderEmpresaHistorico();
-                    alert('Candidato reprovado e movido para o Histórico de Entrevistas.');
+                    alert('Candidato reprovado e feedback automático enviado.');
                 }
             }
         }
@@ -1474,131 +1573,107 @@
         function renderEmpresaTalentos() {
             const grid = document.getElementById('empresa-talentos-grid');
             grid.innerHTML = '';
+
             let candidaturasLiberadas = dbCandidaturas.filter(c => c.empresa === usuarioAtual.name && c.status.includes('Liberado'));
 
             candidaturasLiberadas.forEach(cand => {
-                const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail, discPerfil: cand.talentoDisc };
+                const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail, discPerfil: cand.talentoDisc, curriculoObj: {}, foto: '' };
+                let fotoTalento = c.foto ? `<img src="${c.foto}" class="w-10 h-10 rounded-full object-cover">` : `<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-xs"><i class="fa-solid fa-user"></i></div>`;
+
+                const dataCriacao = cand.dataCandidatura || Date.now();
+                const diasPassados = Math.floor((Date.now() - dataCriacao) / (1000 * 60 * 60 * 24));
+                const diasRestantes = Math.max(0, 10 - diasPassados);
+                let badgePrazo = diasRestantes > 0 
+                    ? `<span class="text-xs bg-amber-50 text-amber-800 font-bold px-2.5 py-1 rounded border border-amber-200"><i class="fa-solid fa-clock mr-1"></i> Prazo de retorno: ${diasRestantes} dias restantes</span>`
+                    : `<span class="text-xs bg-red-50 text-red-800 font-bold px-2.5 py-1 rounded border border-red-200"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Prazo de 10 dias expirado</span>`;
+
                 grid.innerHTML += `
                     <div class="bg-white p-5 rounded-xl border space-y-3 text-sm shadow-sm">
                         <div class="flex justify-between items-center">
-                            <div><strong>${c.name}</strong> <p class="text-xs text-slate-400">(${c.email})</p></div>
+                            <div class="flex items-center space-x-3">
+                                ${fotoTalento}
+                                <div>
+                                    <strong>${c.name}</strong> 
+                                    <p class="text-xs text-slate-400">(${c.email})</p>
+                                </div>
+                            </div>
                             <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-1 rounded uppercase">VAGA: ${cand.vagaTitulo}</span>
                         </div>
+                        <p class="text-xs text-slate-600"><strong>Profissão:</strong> ${c.profissao || 'N/D'} | <strong>WhatsApp:</strong> ${c.whatsApp || 'N/D'}</p>
+                        <div class="text-xs bg-indigo-50 p-2.5 rounded-lg border border-indigo-100 text-indigo-950">
+                            <strong>Perfil DISC & Comportamental:</strong> ${c.discPerfil || 'Não realizado'}
+                        </div>
+                        
+                        <div class="pt-1">
+                            ${badgePrazo}
+                        </div>
+
                         <div class="pt-2 border-t flex flex-wrap gap-2">
-                            <button onclick="verDetalhesCandidato(${cand.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Ver Currículo</button>
+                            <button onclick="verDetalhesCandidato(${cand.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Ver Currículo Detalhado</button>
+                            <button onclick="abrirModalMensagemCandidato(${cand.id})" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-envelope mr-1"></i> Mandar Mensagem</button>
                             <button onclick="abrirModalAgendarEntrevista(${cand.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-calendar-check mr-1"></i> Agendar Entrevista</button>
                             <button onclick="reprovarCandidato(${cand.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Reprovar</button>
                         </div>
                     </div>
                 `;
             });
-            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma candidatura liberada no momento.</p>';
-        }
 
-        // RENDERIZAÇÃO ATUALIZADA DA ABA ENTREVISTAS AGENDADAS
-        function renderEmpresaEntrevistas() {
-            const grid = document.getElementById('empresa-entrevistas-grid');
-            grid.innerHTML = '';
-            let candidaturasAgendadas = dbCandidaturas.filter(c => c.empresa === usuarioAtual.name && c.status.includes('Entrevista Agendada'));
-
-            candidaturasAgendadas.forEach(cand => {
-                const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail };
-                
-                let historicoHtml = '';
-                if (cand.historicoMensagens && cand.historicoMensagens.length > 0) {
-                    cand.historicoMensagens.forEach(msg => {
-                        historicoHtml += `<div class="p-2 bg-white rounded border text-xs mb-1"><strong>${msg.remetente}:</strong> ${msg.texto} <span class="text-[10px] text-slate-400">(${msg.data})</span></div>`;
-                    });
-                } else {
-                    historicoHtml = `<p class="text-xs text-slate-400">Nenhuma mensagem enviada ainda.</p>`;
-                }
-
-                grid.innerHTML += `
-                    <div class="bg-white p-6 rounded-xl border space-y-4 text-sm shadow-sm">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <div>
-                                <strong class="text-base text-indigo-950">${c.name}</strong> 
-                                <span class="text-xs text-slate-400 ml-2">(${c.email})</span>
-                            </div>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 font-bold px-3 py-1 rounded uppercase">VAGA: ${cand.vagaTitulo}</span>
-                        </div>
-
-                        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-xs space-y-1">
-                            <p class="font-bold text-indigo-950">📅 ${cand.status}</p>
-                            <p class="text-slate-700"><strong>Detalhes / Link Inicial:</strong> ${cand.detalhesEntrevista || 'N/D'}</p>
-                        </div>
-
-                        <!-- 1. Link para enviar videochamada por mensagem -->
-                        <div class="p-4 bg-slate-50 border rounded-xl space-y-2">
-                            <label class="block text-xs font-bold uppercase text-slate-700"><i class="fa-solid fa-video mr-1 text-indigo-600"></i> Enviar Link de Videochamada para o Candidato</label>
-                            <div class="flex space-x-2">
-                                <input type="text" id="input-link-video-${cand.id}" placeholder="Cole o link da videochamada aqui (ex: https://meet...)" class="flex-1 border rounded-lg p-2 text-xs bg-white">
-                                <button onclick="enviarLinkVideorapido(${cand.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold">Enviar Link</button>
-                            </div>
-                        </div>
-
-                        <!-- 2. Espaço para dialogar com o candidato (mensagens aparecem na vaga ofertada) -->
-                        <div class="p-4 bg-slate-50 border rounded-xl space-y-2">
-                            <label class="block text-xs font-bold uppercase text-slate-700"><i class="fa-solid fa-comments mr-1 text-indigo-600"></i> Diálogo com o Candidato (Mensagens na Vaga Ofertada)</label>
-                            <div class="max-h-36 overflow-y-auto space-y-1 p-2 bg-white border rounded-lg">
-                                ${historicoHtml}
-                            </div>
-                            <div class="flex space-x-2 pt-1">
-                                <input type="text" id="input-chat-entrevista-${cand.id}" placeholder="Digite sua mensagem para o candidato..." class="flex-1 border rounded-lg p-2 text-xs bg-white">
-                                <button onclick="enviarMensagemDiretaEntrevista(${cand.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold">Enviar Mensagem</button>
-                            </div>
-                        </div>
-
-                        <!-- 3. Área de resumo para mandar ao consultor -->
-                        <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl space-y-2">
-                            <label class="block text-xs font-bold uppercase text-emerald-900"><i class="fa-solid fa-paper-plane mr-1"></i> Área de Resumo (Enviar para o Consultor)</label>
-                            <textarea id="textarea-resumo-${cand.id}" rows="2" placeholder="Escreva o resumo da entrevista ou considerações para o consultor..." class="w-full border rounded-lg p-2.5 text-xs bg-white">${cand.resumoConsultor || ''}</textarea>
-                            <div class="flex justify-end">
-                                <button onclick="salvarResumoConsultor(${cand.id})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs font-semibold">Enviar Resumo ao Consultor</button>
-                            </div>
-                        </div>
-
-                        <div class="pt-2 border-t flex justify-between items-center">
-                            <button onclick="verDetalhesCandidato(${cand.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Ver Currículo Detalhado</button>
-                            <button onclick="reprovarCandidato(${cand.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Reprovar / Mover para Histórico</button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma entrevista agendada no momento.</p>';
-        }
-
-        function renderEmpresaHistorico() {
-            const grid = document.getElementById('empresa-historico-grid');
-            grid.innerHTML = '';
-            let candidaturasHistorico = dbCandidaturas.filter(c => c.empresa === usuarioAtual.name && c.status.includes('Reprovado'));
-
-            candidaturasHistorico.forEach(cand => {
-                const c = dbUsers.find(u => Number(u.id) === Number(cand.talentoId)) || { name: cand.talentoNome, email: cand.talentoEmail };
-                grid.innerHTML += `
-                    <div class="bg-white p-5 rounded-xl border space-y-3 text-sm shadow-sm opacity-90">
-                        <div class="flex justify-between items-center">
-                            <div><strong>${c.name}</strong> <p class="text-xs text-slate-400">(${c.email})</p></div>
-                            <span class="text-[10px] bg-red-50 text-red-700 font-bold px-2 py-1 rounded uppercase">VAGA: ${cand.vagaTitulo}</span>
-                        </div>
-                        <p class="text-xs text-slate-500"><strong>Status:</strong> ${cand.status}</p>
-                    </div>
-                `;
-            });
-            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhum registro no histórico.</p>';
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma candidatura liberada pelo Consultor para a sua empresa no momento.</p>';
         }
 
         function salvarPerfilCliente(e) {
             e.preventDefault();
             usuarioAtual.name = document.getElementById('cli-nome').value.trim();
             usuarioAtual.email = document.getElementById('cli-email').value.trim();
-            const idx = dbUsers.findIndex(u => Number(u.id) === Number(usuarioAtual.id));
-            if (idx !== -1) dbUsers[idx] = usuarioAtual;
-            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
-            localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
-            atualizarAvatarUI();
-            mostrarFeedback('feedback-perfil-cliente', 'Perfil salvo com sucesso!', 'blue');
+            usuarioAtual.dataNasc = document.getElementById('cli-nasc').value;
+            usuarioAtual.cpf = document.getElementById('cli-cpf').value.trim();
+            usuarioAtual.whatsApp = document.getElementById('cli-whats').value.trim();
+            usuarioAtual.endereco = document.getElementById('cli-endereco').value.trim();
+            usuarioAtual.profissao = document.getElementById('cli-profissao').value.trim();
+            usuarioAtual.proximoPasso = document.getElementById('cli-proximo-passo').value.trim();
+            usuarioAtual.objetivoProfissional = document.getElementById('cli-objetivo').value.trim();
+            
+            let experiencias = [];
+            document.querySelectorAll('.item-experiencia').forEach(item => {
+                const empresa = item.querySelector('.exp-empresa').value.trim();
+                const funcao = item.querySelector('.exp-funcao').value.trim();
+                if (empresa || funcao) {
+                    experiencias.push({
+                        empresa: empresa,
+                        funcao: funcao,
+                        dataInicio: item.querySelector('.exp-inicio').value,
+                        dataSaida: item.querySelector('.exp-saida').value,
+                        atribuicoes: item.querySelector('.exp-atribuicoes').value.trim(),
+                        motivoSaida: item.querySelector('.exp-motivo').value.trim(),
+                        obs: item.querySelector('.exp-obs').value.trim()
+                    });
+                }
+            });
+            usuarioAtual.experiencias = experiencias;
+
+            const novaSenha = document.getElementById('cli-senha').value.trim();
+            if (novaSenha !== '') usuarioAtual.pass = novaSenha;
+
+            const fotoInput = document.getElementById('cli-foto');
+            const atualizarDadosFinais = () => {
+                const idx = dbUsers.findIndex(u => Number(u.id) === Number(usuarioAtual.id));
+                if (idx !== -1) dbUsers[idx] = usuarioAtual;
+                localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+                localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
+                atualizarAvatarUI();
+                mostrarFeedback('feedback-perfil-cliente', 'Perfil e experiências salvos com sucesso!', 'blue');
+            };
+
+            if (fotoInput.files && fotoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    usuarioAtual.foto = evt.target.result;
+                    atualizarDadosFinais();
+                };
+                reader.readAsDataURL(fotoInput.files[0]);
+            } else {
+                atualizarDadosFinais();
+            }
         }
 
         function salvarPerfilEmpresa(e) {
@@ -1608,14 +1683,37 @@
             usuarioAtual.email = document.getElementById('emp-email').value.trim();
             usuarioAtual.cnpj = document.getElementById('emp-cnpj').value.trim();
             usuarioAtual.endereco = document.getElementById('emp-endereco').value.trim();
-            
-            const idx = dbUsers.findIndex(u => Number(u.id) === Number(usuarioAtual.id));
-            if (idx !== -1) dbUsers[idx] = usuarioAtual;
-            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
-            localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
-            atualizarAvatarUI();
-            mostrarFeedback('feedback-perfil-empresa', 'Perfil salvo com sucesso!', 'blue');
-            setTimeout(() => { mudarSecao('empresa-talentos'); }, 1000);
+            usuarioAtual.qntFuncionarios = document.getElementById('emp-qnt-funcionarios').value;
+
+            const novaSenha = document.getElementById('emp-senha').value.trim();
+            if (novaSenha !== '') usuarioAtual.pass = novaSenha;
+
+            const fotoInput = document.getElementById('emp-foto');
+            const atualizarDadosFinais = () => {
+                const idx = dbUsers.findIndex(u => Number(u.id) === Number(usuarioAtual.id));
+                if (idx !== -1) dbUsers[idx] = usuarioAtual;
+                localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+                localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
+                atualizarAvatarUI();
+                mostrarFeedback('feedback-perfil-empresa', 'Perfil e senha da Empresa salvos com sucesso!', 'blue');
+                setTimeout(() => {
+                    mudarSecao('empresa-talentos');
+                    renderEmpresaJobs();
+                    renderEmpresaTalentos();
+                    renderEmpresaHirings();
+                }, 1500);
+            };
+
+            if (fotoInput.files && fotoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    usuarioAtual.foto = evt.target.result;
+                    atualizarDadosFinais();
+                };
+                reader.readAsDataURL(fotoInput.files[0]);
+            } else {
+                atualizarDadosFinais();
+            }
         }
 
         function resetDiscTestView() {
@@ -1627,17 +1725,123 @@
         function iniciarTesteDiscInterativo() {
             document.getElementById('disc-intro-view').classList.add('hidden');
             document.getElementById('disc-questions-view').classList.remove('hidden');
+            
+            const questoesDisc = [
+                { id: 1, p: "Em situações de desafio ou tomada de decisão, você tende a:", op: [{ v: "D", t: "Assumir a liderança e agir rapidamente com foco em resultados." }, { v: "I", t: "Engajar e motivar pessoas através da comunicação e entusiasmo." }, { v: "S", t: "Buscar harmonia, apoiar a equipe e manter a estabilidade." }, { v: "C", t: "Analisar dados detalhadamente antes de tomar qualquer decisão." }] },
+                { id: 2, p: "Qual ambiente de trabalho mais te estimula?", op: [{ v: "D", t: "Um ambiente dinâmico, competitivo e voltado a metas ambiciosas." }, { v: "I", t: "Um ambiente colaborativo, flexível e com forte interação social." }, { v: "S", t: "Um ambiente previsível, seguro e com processos bem estabelecidos." }, { v: "C", t: "Um ambiente organizado, estruturado e focado na excelência técnica." }] },
+                { id: 3, p: "Sob forte pressão ou prazo curto, qual é a sua reação típica?", op: [{ v: "D", t: "Foco total na entrega imediata, cobrando agilidade da equipe." }, { v: "I", t: "Usar o poder de persuasão para manter o ânimo e engajar todos." }, { v: "S", t: "Manter a calma, seguir os processos e apoiar quem precisar." }, { v: "C", t: "Conferir padrões de qualidade para evitar qualquer erro crítico." }] },
+                { id: 4, p: "Como você prefere receber feedback sobre o seu desempenho?", op: [{ v: "D", t: "Direto ao ponto, focado em metas alcançadas e próximos desafios." }, { v: "I", t: "De forma aberta, valorizando as relações e conquistas em equipe." }, { v: "S", t: "Em um ambiente acolhedor, construtivo e gradual." }, { v: "C", t: "Baseado em dados concretos, métricas e relatórios de desempenho." }] },
+                { id: 5, p: "Ao iniciar um novo projeto, o que é mais importante para você?", op: [{ v: "D", t: "Entender qual o grande objetivo e o prazo de entrega." }, { v: "I", t: "Saber quem estará na equipe e como será a comunicação." }, { v: "S", t: "Garantir que haja segurança e suporte para todos." }, { v: "C", t: "Analisar o escopo, especificações e requisitos técnicos." }] },
+                { id: 6, p: "Como você lida com conflitos interpessoais no trabalho?", op: [{ v: "D", t: "Enfrento diretamente para resolver logo e retomar o foco." }, { v: "I", t: "Uso o bom humor e o diálogo para apaziguar os ânimos." }, { v: "S", t: "Busco mediar com cautela para restabelecer a harmonia." }, { v: "C", t: "Avalo os fatos de forma imparcial e lógica." }] },
+                { id: 7, p: "Qual o seu estilo de liderança ou influência preferido?", op: [{ v: "D", t: "Inspirar através da cobrança por metas e alta performance." }, { v: "I", t: "Motivar através do carisma, energia e reconhecimento." }, { v: "S", t: "Dar apoio constante, ouvindo e orientando com paciência." }, { v: "C", t: "Liderar pelo exemplo técnico e rigor metodológico." }] },
+                { id: 8, p: "O que mais te desmotiva em uma função?", op: [{ v: "D", t: "Lentidão, burocracia excessiva e falta de autonomia." }, { v: "I", t: "Isolamento, rotina monótona e falta de reconhecimento público." }, { v: "S", t: "Mudanças bruscas repentinas e instabilidade constante." }, { v: "C", t: "Falta de padrão, desorganização e cobranças sem embasamento." }] },
+                { id: 9, p: "Qual palavra melhor define seu ritmo de trabalho?", op: [{ v: "D", t: "Acelerado e focado." }, { v: "I", t: "Dinâmico e multitarefa." }, { v: "S", t: "Constante e metódico." }, { v: "C", t: "Cauteloso e detalhista." }] },
+                { id: 10, p: "Como você planeja suas tarefas diárias?", op: [{ v: "D", t: "Foco nas prioridades que trazem resultado mais rápido." }, { v: "I", t: "De forma flexível, conversando com as pessoas envolvidas." }, { v: "S", t: "Seguindo uma rotina estabelecida e segura." }, { v: "C", t: "Criando checklists estruturados e cronogramas rígidos." }] },
+                { id: 11, p: "Qual sua postura diante de mudanças organizacionais?", op: [{ v: "D", t: "Aproveito a oportunidade para liderar a transformação." }, { v: "I", t: "Vejo como algo positivo e estimulante para novas conexões." }, { v: "S", t: "Prefiro transições suaves e bem comunicadas." }, { v: "C", t: "Analiso detalhadamente os riscos antes de aceitar." }] },
+                { id: 12, p: "Em reuniões de equipe, qual costuma ser sua participação?", op: [{ v: "D", t: "Direciono o foco para as decisões e soluções." }, { v: "I", t: "Agito o debate, dou ideias e interajo com todos." }, { v: "S", t: "Ouço atentamente e trago ponderações equilibradas." }, { v: "C", t: "Faço perguntas técnicas pertinentes e aponto falhas lógicas." }] },
+                { id: 13, p: "O que você mais valoriza em um colega de trabalho?", op: [{ v: "D", t: "Competência, agilidade e entrega de resultados." }, { v: "I", t: "Empatia, bom humor e colaboração." }, { v: "S", t: "Lealdade, confiabilidade e companheirismo." }, { v: "C", t: "Rigor profissional, inteligência e precisão." }] },
+                { id: 14, p: "Como você toma decisões importantes?", op: [{ v: "D", t: "Intuitivamente, com base na visão geral e assertividade." }, { v: "I", t: "Considerando o impacto nas pessoas e no clima." }, { v: "S", t: "Pensando na segurança a longo prazo e consenso." }, { v: "C", t: "Cruzando dados, relatórios e evidências." }] },
+                { id: 15, p: "Qual o seu principal objetivo de carreira?", op: [{ v: "D", t: "Alcançar cargos de alta liderança executiva." }, { v: "I", t: "Tornar-se referência em influência e inovação." }, { v: "S", t: "Consolidar estabilidade e respeito profissional." }, { v: "C", t: "Ser reconhecido como especialista técnico supremo." }] }
+            ];
+
             const container = document.getElementById('disc-question-container');
-            container.innerHTML = `<p class="text-xs text-slate-600">Teste DISC concluído para simulação.</p>`;
+            container.innerHTML = `<div class="space-y-6">`;
+            questoesDisc.forEach((q, index) => {
+                let htmlOpcoes = '';
+                q.op.forEach(opt => {
+                    htmlOpcoes += `<label class="block"><input type="radio" name="disc${index+1}" value="${opt.v}" class="mr-2"> ${opt.t}</label>`;
+                });
+                container.innerHTML += `
+                    <div class="border-b pb-4">
+                        <p class="font-semibold text-slate-700 mb-2">${index+1}. ${q.p}</p>
+                        <div class="space-y-1.5 pl-2 text-xs">
+                            ${htmlOpcoes}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML += `
+                <button type="button" onclick="calcularResultadoDisc(${questoesDisc.length})" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg text-sm">Enviar Respostas e Gerar Perfil DISC Completo</button>
+            </div>`;
         }
 
+        function calcularResultadoDisc(totalQ) {
+            let respostas = [];
+            for(let i=1; i<=totalQ; i++) {
+                let r = document.querySelector(`input[name="disc${i}"]:checked`);
+                if (!r) {
+                    alert(`Por favor, responda a questão ${i} para concluir o teste completo.`);
+                    return;
+                }
+                respostas.push(r.value);
+            }
+
+            const contagem = { D: 0, I: 0, S: 0, C: 0 };
+            respostas.forEach(v => contagem[v]++);
+
+            let maior = 'D';
+            let maxVal = -1;
+            for (let k in contagem) {
+                if (contagem[k] > maxVal) {
+                    maxVal = contagem[k];
+                    maior = k;
+                }
+            }
+
+            let perfil = '';
+            let desc = '';
+            if (maior === 'D') {
+                perfil = 'Dominância (D) - Executivo de Alto Impacto';
+                desc = 'Perfil altamente orientado a resultados, liderança nata, foco em metas ambiciosas e tomada de decisão ágil sob pressão.';
+            } else if (maior === 'I') {
+                perfil = 'Influência (I) - Comunicador & Engajador';
+                desc = 'Perfil focado em pessoas, comunicação persuasiva, colaboração, energia contagiante e facilidade para networking.';
+            } else if (maior === 'S') {
+                perfil = 'Estabilidade (S) - Pilar de Sustentação & Lealdade';
+                desc = 'Perfil focado em harmonia, constancia, suporte à equipe, segurança e consistência na execução de processos.';
+            } else {
+                perfil = 'Conformidade (C) - Especialista em Qualidade & Precisão';
+                desc = 'Perfil analítico, rigoroso com padrões técnicos, organizado, focado em regras e excelência operacional.';
+            }
+
+            usuarioAtual.discPerfil = `${perfil} | ${desc}`;
+            const idx = dbUsers.findIndex(u => Number(u.id) === Number(usuarioAtual.id));
+            if (idx !== -1) dbUsers[idx] = usuarioAtual;
+            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+            localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
+
+            adicionarMensagemSistema(`Novo Perfil DISC Concluído pelo Talento: ${usuarioAtual.name}. Resumo: ${perfil}`, 'Resultado DISC');
+
+            const resultBox = document.getElementById('disc-result-box');
+            resultBox.innerHTML = `
+                <h4 class="font-bold text-base">Perfil DISC Traçado com Sucesso: ${perfil}</h4>
+                <p>${desc}</p>
+                <p class="text-xs text-indigo-700 mt-2 font-semibold">✨ O resumo completo do seu perfil foi enviado automaticamente para o Consultor e já está disponível para visualização das empresas!</p>
+                <div class="mt-3">
+                    <button onclick="resetDiscTestView()" class="text-xs bg-white text-indigo-700 border border-indigo-300 px-3 py-1 rounded font-semibold hover:bg-slate-50">Refazer Teste</button>
+                </div>
+            `;
+            resultBox.classList.remove('hidden');
+        }
+
+        // CHAT E CONSULTORIAS
         function renderClientChat() {
             const box = document.getElementById('client-chat-box');
             if (!box) return;
             box.innerHTML = '';
             dbChat.forEach(m => {
-                box.innerHTML += `<div class="p-2.5 bg-white border rounded-lg text-xs space-y-1 shadow-sm"><strong>${m.remetente}:</strong> ${m.texto}</div>`;
+                let conteudo = m.arquivo ? `<img src="${m.arquivo}" class="max-w-xs rounded-lg mt-1 border">` : `<span>${m.texto}</span>`;
+                box.innerHTML += `
+                    <div class="p-2.5 bg-white border rounded-lg text-xs space-y-1 shadow-sm">
+                        <div class="flex justify-between font-bold text-indigo-900">
+                            <span>${m.remetente}</span>
+                            <span class="text-[10px] text-slate-400 font-normal">${m.data}</span>
+                        </div>
+                        <div>${conteudo}</div>
+                    </div>
+                `;
             });
+            box.scrollTop = box.scrollHeight;
         }
 
         function renderMasterChat() {
@@ -1645,71 +1849,1075 @@
             if (!box) return;
             box.innerHTML = '';
             dbChat.forEach(m => {
-                box.innerHTML += `<div class="p-2.5 bg-white border rounded-lg text-xs space-y-1 shadow-sm"><strong>${m.remetente}:</strong> ${m.texto}</div>`;
+                let conteudo = m.arquivo ? `<img src="${m.arquivo}" class="max-w-xs rounded-lg mt-1 border">` : `<span>${m.texto}</span>`;
+                box.innerHTML += `
+                    <div class="p-2.5 bg-white border rounded-lg text-xs space-y-1 shadow-sm">
+                        <div class="flex justify-between font-bold text-indigo-900">
+                            <span>${m.remetente}</span>
+                            <span class="text-[10px] text-slate-400 font-normal">${m.data}</span>
+                        </div>
+                        <div>${conteudo}</div>
+                    </div>
+                `;
             });
+            box.scrollTop = box.scrollHeight;
         }
 
         function clientEnviarMensagem(e) {
             e.preventDefault();
             const input = document.getElementById('client-chat-input');
-            dbChat.push({ id: Date.now(), remetente: usuarioAtual.name, texto: input.value.trim(), data: new Date().toLocaleDateString() });
+            const texto = input.value.trim();
+            if(!texto) return;
+
+            dbChat.push({
+                id: Date.now(),
+                remetente: usuarioAtual.name,
+                texto: texto,
+                data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+            });
             localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
             input.value = '';
             renderClientChat();
+            renderMasterChat();
         }
 
         function masterEnviarMensagem(e) {
             e.preventDefault();
             const input = document.getElementById('master-chat-input');
-            dbChat.push({ id: Date.now(), remetente: usuarioAtual.name, texto: input.value.trim(), data: new Date().toLocaleDateString() });
+            const texto = input.value.trim();
+            if(!texto) return;
+
+            dbChat.push({
+                id: Date.now(),
+                remetente: usuarioAtual.name,
+                texto: texto,
+                data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+            });
             localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
             input.value = '';
+            renderClientChat();
             renderMasterChat();
         }
 
-        function clientEnviarMidia(e) {}
-        function masterEnviarMidia(e) {}
-        function masterSalvarAgenda(e) { e.preventDefault(); fecharModal('modal-agenda-master'); }
-        function renderMasterAgenda() {}
-        function renderClientAgenda() {}
-        function abrirModalNovaVaga() { abrirModal('modal-vaga'); }
-        function abrirModalEditarVaga(id) { abrirModal('modal-vaga'); }
-        function verDetalhesVaga(id) { abrirModal('modal-detalhes-vaga'); }
-        function abrirModalCurso(id) { abrirModal('modal-curso'); }
-        function abrirModalVideo(id) { abrirModal('modal-video'); }
-        function enviarParaLixeira(tipo, dados) {}
-        function excluirClienteMaster(id) {}
-        function excluirCurso(id) {}
-        function excluirVideo(id) {}
-        function excluirVaga(id) {}
-        function restaurarDaLixeira(id) {}
-        function renderMasterTrash() {}
-        function salvarCursoMaster(e) { e.preventDefault(); fecharModal('modal-curso'); }
-        function salvarVideoMaster(e) { e.preventDefault(); fecharModal('modal-video'); }
-        function salvarVagaEmpresa(e) { e.preventDefault(); fecharModal('modal-vaga'); }
-        function cadastrarClientePublico(e) { e.preventDefault(); fecharModal('modal-register-client'); }
-        function masterSalvarCliente(e) { e.preventDefault(); fecharModal('modal-master-client'); }
-        function masterSalvarEmpresa(e) { e.preventDefault(); fecharModal('modal-master-empresa'); }
-        function alternarAprovacaoVaga(id) {}
-        function liberarCandidaturaRecrutador(id) {}
-        function candidatarVaga(id) {}
-        function curtirVaga(id) {}
-        function curtirVideo(id) {}
-        function compartilharVaga(t) {}
-        function verDetalhesClienteMaster(id) {}
-        function atualizarStatusTalentoMaster(s) {}
-        function renderMasterClients() {}
-        function renderMasterEmpresas() {}
-        function renderMasterCourses() {}
-        function renderMasterVideos() {}
-        function renderMasterJobs() {}
-        function renderClientCourses() {}
-        function renderClientVideos() {}
-        function renderClientVagas() {}
-        function renderEmpresaJobs() {}
-        function renderMessages() {}
-        function renderEmpresaHirings() {}
-        function salvarContratacao(e) { e.preventDefault(); fecharModal('modal-contratacao'); }
+        function clientEnviarMidia(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    dbChat.push({
+                        id: Date.now(),
+                        remetente: usuarioAtual.name,
+                        texto: '[Arquivo de Mídia]',
+                        arquivo: evt.target.result,
+                        data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+                    });
+                    localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
+                    renderClientChat();
+                    renderMasterChat();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function masterEnviarMidia(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    dbChat.push({
+                        id: Date.now(),
+                        remetente: usuarioAtual.name,
+                        texto: '[Arquivo de Mídia]',
+                        arquivo: evt.target.result,
+                        data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+                    });
+                    localStorage.setItem('imp_db_chat', JSON.stringify(dbChat));
+                    renderClientChat();
+                    renderMasterChat();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function masterSalvarAgenda(e) {
+            e.preventDefault();
+            const data = document.getElementById('ag-data').value;
+            const tema = document.getElementById('ag-tema').value.trim();
+            dbAgenda.push({ id: Date.now(), data, tema, agendadoPor: '' });
+            localStorage.setItem('imp_db_agenda', JSON.stringify(dbAgenda));
+            fecharModal('modal-agenda-master');
+            renderMasterAgenda();
+            renderClientAgenda();
+            alert('Horário cadastrado com sucesso na agenda!');
+        }
+
+        function renderMasterAgenda() {
+            const list = document.getElementById('master-agenda-list');
+            if(!list) return;
+            list.innerHTML = '';
+            dbAgenda.forEach(a => {
+                let statusInfo = a.agendadoPor ? `<span class="text-indigo-700 font-bold">Agendado por: ${a.agendadoPor}</span>` : `<span class="text-emerald-600 font-bold">Disponível na agenda</span>`;
+                let btnCancelarMaster = a.agendadoPor ? `<button onclick="cancelarAgendamento(${a.id})" class="ml-2 bg-red-50 hover:bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Cancelar Agendamento</button>` : '';
+
+                list.innerHTML += `
+                    <div class="p-3 bg-slate-50 border rounded-lg text-xs space-y-1 flex justify-between items-center">
+                        <div>
+                            <div><strong>📅 ${a.data.replace('T', ' às ')}</strong></div>
+                            <div class="text-slate-600">Tema: ${a.tema}</div>
+                            <div>${statusInfo}</div>
+                        </div>
+                        <div>${btnCancelarMaster}</div>
+                    </div>
+                `;
+            });
+            if(list.innerHTML === '') list.innerHTML = '<p class="text-xs text-slate-400">Nenhum horário na agenda.</p>';
+        }
+
+        function renderClientAgenda() {
+            const list = document.getElementById('client-agenda-list');
+            if(!list) return;
+            list.innerHTML = '';
+            dbAgenda.forEach(a => {
+                let btnAcao = '';
+                if (a.agendadoPor === usuarioAtual.name) {
+                    btnAcao = `<button onclick="cancelarAgendamento(${a.id})" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-semibold">Cancelar Agendamento</button>`;
+                } else if (a.agendadoPor) {
+                    btnAcao = `<span class="text-slate-500 font-bold">Reservado por outro aluno</span>`;
+                } else {
+                    btnAcao = `<button onclick="agendarConsultoria(${a.id})" class="bg-indigo-600 text-white px-3 py-1 rounded text-xs font-semibold">Agendar Horário</button>`;
+                }
+
+                list.innerHTML += `
+                    <div class="p-3 bg-slate-50 border rounded-lg text-xs space-y-2 flex justify-between items-center">
+                        <div>
+                            <div><strong>📅 ${a.data.replace('T', ' às ')}</strong></div>
+                            <div class="text-slate-600">Tema: ${a.tema}</div>
+                        </div>
+                        <div>${btnAcao}</div>
+                    </div>
+                `;
+            });
+            if(list.innerHTML === '') list.innerHTML = '<p class="text-xs text-slate-400">Nenhum horário disponível no momento.</p>';
+        }
+
+        function agendarConsultoria(id) {
+            const ag = dbAgenda.find(x => Number(x.id) === Number(id));
+            if(ag) {
+                ag.agendadoPor = usuarioAtual.name;
+                localStorage.setItem('imp_db_agenda', JSON.stringify(dbAgenda));
+                renderClientAgenda();
+                renderMasterAgenda();
+                alert('Consultoria agendada com sucesso!');
+            }
+        }
+
+        function cancelarAgendamento(id) {
+            if (confirm('Tem certeza que deseja cancelar este agendamento?')) {
+                const ag = dbAgenda.find(x => Number(x.id) === Number(id));
+                if (ag) {
+                    ag.agendadoPor = '';
+                    localStorage.setItem('imp_db_agenda', JSON.stringify(dbAgenda));
+                    renderClientAgenda();
+                    renderMasterAgenda();
+                    alert('Agendamento cancelado com sucesso!');
+                }
+            }
+        }
+
+        function abrirModalNovaVaga() {
+            if (!empresaEstaComPerfilCompleto(usuarioAtual)) {
+                mostrarFeedbackGeral('Por favor, preencha todos os dados obrigatórios do perfil da empresa antes de cadastrar uma vaga.', 'perfil-empresa', 'red');
+                mudarSecao('perfil-empresa');
+                return;
+            }
+            document.getElementById('modal-vaga-title').innerText = 'Cadastrar Vaga Corporativa';
+            document.getElementById('jv-id').value = '';
+            document.getElementById('jv-title').value = '';
+            document.getElementById('jv-requisitos').value = '';
+            document.getElementById('jv-desc').value = '';
+            document.getElementById('jv-escolaridade').value = 'Ensino Superior';
+            document.getElementById('jv-graduacao-obrigatoria').value = 'Sim';
+            toggleGraduacaoCurso('Sim');
+            document.getElementById('jv-qual-faculdade').value = '';
+            document.getElementById('jv-nivel-excel').value = 'Intermediário';
+            document.getElementById('jv-contratacao').value = 'CLT';
+            document.getElementById('jv-resp').value = '';
+            document.getElementById('jv-modelo').value = 'Presencial';
+            document.getElementById('jv-escala').value = '';
+            document.getElementById('jv-trab-sabado').value = 'Não';
+            toggleSabadoHorario('Não');
+            
+            const container = document.getElementById('container-beneficios');
+            container.innerHTML = `
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Ex: Vale Refeição, Plano de Saúde..." class="input-beneficio w-full border rounded-lg p-2 text-sm bg-white" value="Vale Refeição">
+                    <button type="button" onclick="removerCampoBeneficio(this)" class="bg-red-50 text-red-600 px-3 py-2 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+            document.getElementById('jv-remuneracao').value = '';
+            abrirModal('modal-vaga');
+        }
+
+        function abrirModalEditarVaga(id) {
+            const j = dbJobs.find(x => Number(x.id) === Number(id));
+            if (!j) return;
+
+            document.getElementById('modal-vaga-title').innerText = 'Editar Vaga Corporativa';
+            document.getElementById('jv-id').value = j.id;
+            document.getElementById('jv-title').value = j.title || '';
+            document.getElementById('jv-requisitos').value = j.requisitos || '';
+            document.getElementById('jv-desc').value = j.desc || '';
+            document.getElementById('jv-escolaridade').value = j.escolaridade || 'Ensino Superior';
+            document.getElementById('jv-graduacao-obrigatoria').value = j.graduacaoObrigatoria || 'Sim';
+            toggleGraduacaoCurso(j.graduacaoObrigatoria || 'Sim');
+            document.getElementById('jv-qual-faculdade').value = j.qualFaculdade || '';
+            document.getElementById('jv-nivel-excel').value = j.nivelExcel || 'Intermediário';
+            document.getElementById('jv-contratacao').value = j.tipoContratacao || 'CLT';
+            document.getElementById('jv-resp').value = j.responsabilidades || '';
+            document.getElementById('jv-modelo').value = j.modelo || 'Presencial';
+            document.getElementById('jv-escala').value = j.escala || '';
+            
+            const trabSab = j.trabalhaSabado && j.trabalhaSabado.startsWith('Sim') ? 'Sim' : 'Não';
+            document.getElementById('jv-trab-sabado').value = trabSab;
+            toggleSabadoHorario(trabSab);
+            if (trabSab === 'Sim') {
+                const parts = j.trabalhaSabado.match(/\((.*?)\)/);
+                document.getElementById('jv-horario-sabado').value = parts ? parts[1] : '';
+            }
+
+            const container = document.getElementById('container-beneficios');
+            container.innerHTML = '';
+            const bens = j.beneficios ? j.beneficios.split(', ') : ['Vale Refeição'];
+            bens.forEach(b => {
+                const div = document.createElement('div');
+                div.className = 'flex space-x-2';
+                div.innerHTML = `
+                    <input type="text" placeholder="Ex: Vale Refeição, Plano de Saúde..." class="input-beneficio w-full border rounded-lg p-2 text-sm bg-white" value="${b}">
+                    <button type="button" onclick="removerCampoBeneficio(this)" class="bg-red-50 text-red-600 px-3 py-2 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('jv-remuneracao').value = j.remuneracao || '';
+            abrirModal('modal-vaga');
+        }
+
+        function verDetalhesVaga(id) {
+            const j = dbJobs.find(x => Number(x.id) === Number(id));
+            if (!j) return;
+            const fotoEmp = obterFotoEmpresa(j.empresa);
+            let imgHeader = fotoEmp ? `<img src="${fotoEmp}" class="w-12 h-12 rounded-full object-cover border mr-3">` : `<div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold mr-3"><i class="fa-solid fa-building"></i></div>`;
+
+            document.getElementById('detalhes-vaga-titulo').innerHTML = `<div class="flex items-center">${imgHeader} <div><span>Detalhes da Vaga: ${j.title}</span><p class="text-xs font-normal text-slate-500">${j.empresa}</p></div></div>`;
+            document.getElementById('detalhes-vaga-conteudo').innerHTML = `
+                <p><strong>Tipo de Contratação:</strong> ${j.tipoContratacao || 'CLT'}</p>
+                <p><strong>Escolaridade:</strong> ${j.escolaridade}</p>
+                <p><strong>Graduação Obrigatória:</strong> ${j.graduacaoObrigatoria} (${j.qualFaculdade || 'N/D'})</p>
+                <p><strong>Nível de Excel:</strong> ${j.nivelExcel}</p>
+                <p><strong>Requisitos:</strong> ${j.requisitos}</p>
+                <p><strong>Atribuições:</strong> ${j.responsabilidades}</p>
+                <p><strong>Benefícios:</strong> ${j.beneficios || 'N/D'}</p>
+                <p><strong>Remuneração:</strong> ${j.remuneracao || 'A combinar'}</p>
+                <p><strong>Modelo de Trabalho:</strong> ${j.modelo} | <strong>Escala:</strong> ${j.escala}</p>
+                <p><strong>Trabalha aos Sábados:</strong> ${j.trabalhaSabado}</p>
+                <p><strong>Idiomas:</strong> ${j.idiomas}</p>
+            `;
+            abrirModal('modal-detalhes-vaga');
+        }
+
+        function abrirModalCurso(id = null) {
+            abrirModal('modal-curso');
+            if (id !== null && id !== undefined) {
+                const c = dbMasterCourses.find(x => Number(x.id) === Number(id));
+                if (c) {
+                    document.getElementById('modal-curso-title').innerText = 'Editar Curso & Anexo';
+                    document.getElementById('mc-id').value = c.id;
+                    document.getElementById('mc-titulo').value = c.titulo;
+                    document.getElementById('mc-cat').value = c.categoria;
+                    document.getElementById('mc-desc').value = c.desc;
+                    document.getElementById('mc-anexo').value = c.anexo;
+                    document.getElementById('mc-file').value = '';
+                }
+            } else {
+                document.getElementById('modal-curso-title').innerText = 'Criar Curso & Anexar Material';
+                document.getElementById('mc-id').value = '';
+                document.getElementById('mc-titulo').value = '';
+                document.getElementById('mc-cat').value = '';
+                document.getElementById('mc-desc').value = '';
+                document.getElementById('mc-anexo').value = '';
+                document.getElementById('mc-file').value = '';
+            }
+        }
+
+        function abrirModalVideo(id = null) {
+            abrirModal('modal-video');
+            if (id !== null && id !== undefined) {
+                const v = dbVideos.find(x => Number(x.id) === Number(id));
+                if (v) {
+                    document.getElementById('modal-video-title').innerText = 'Editar Vídeo Aula';
+                    document.getElementById('mv-id').value = v.id;
+                    document.getElementById('mv-titulo').value = v.titulo;
+                    document.getElementById('mv-desc').value = v.desc;
+                    document.getElementById('mv-url').value = v.url;
+                    document.getElementById('mv-file').value = '';
+                }
+            } else {
+                document.getElementById('modal-video-title').innerText = 'Adicionar Vídeo Aula';
+                document.getElementById('mv-id').value = '';
+                document.getElementById('mv-titulo').value = '';
+                document.getElementById('mv-desc').value = '';
+                document.getElementById('mv-url').value = '';
+                document.getElementById('mv-file').value = '';
+            }
+        }
+
+        function enviarParaLixeira(tipo, dados) {
+            dbTrash.push({
+                id: Date.now(),
+                tipo: tipo,
+                dados: dados,
+                dataExclusao: new Date().toLocaleDateString()
+            });
+            localStorage.setItem('imp_db_trash', JSON.stringify(dbTrash));
+            if(usuarioAtual && usuarioAtual.role === 'master') renderMasterTrash();
+        }
+
+        function excluirClienteMaster(id) {
+            if (confirm('Tem certeza absoluta que deseja excluir este aluno?')) {
+                const client = dbUsers.find(u => Number(u.id) === Number(id));
+                if(client) {
+                    enviarParaLixeira('Cliente / Aluno', client);
+                    dbUsers = dbUsers.filter(u => Number(u.id) !== Number(id));
+                    localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+                    mudarSecao('master-clients');
+                    renderMasterClients();
+                    alert('Aluno excluído e movido para a Pasta Lixo.');
+                }
+            }
+        }
+
+        function excluirCurso(id) {
+            if (confirm('Tem certeza absoluta que deseja excluir este curso?')) {
+                const course = dbMasterCourses.find(x => Number(x.id) === Number(id));
+                if(course) {
+                    enviarParaLixeira('Curso', course);
+                    dbMasterCourses = dbMasterCourses.filter(x => Number(x.id) !== Number(id));
+                    localStorage.setItem('imp_db_master_courses', JSON.stringify(dbMasterCourses));
+                    renderMasterCourses();
+                    alert('Curso excluído e movido para a Pasta Lixo.');
+                }
+            }
+        }
+
+        function excluirVideo(id) {
+            if (confirm('Tem certeza absoluta que deseja excluir esta vídeo aula?')) {
+                const video = dbVideos.find(x => Number(x.id) === Number(id));
+                if(video) {
+                    enviarParaLixeira('Vídeo Aula', video);
+                    dbVideos = dbVideos.filter(x => Number(x.id) !== Number(id));
+                    localStorage.setItem('imp_db_videos', JSON.stringify(dbVideos));
+                    renderMasterVideos();
+                    alert('Vídeo aula excluída e movida para a Pasta Lixo.');
+                }
+            }
+        }
+
+        function excluirVaga(id) {
+            if (confirm('Tem certeza absoluta que deseja excluir esta vaga?')) {
+                const job = dbJobs.find(x => Number(x.id) === Number(id));
+                if(job) {
+                    enviarParaLixeira('Vaga', job);
+                    dbJobs = dbJobs.filter(x => Number(x.id) !== Number(id));
+                    localStorage.setItem('imp_db_jobs', JSON.stringify(dbJobs));
+                    renderMasterJobs();
+                    if(usuarioAtual && usuarioAtual.role === 'empresa') renderEmpresaJobs();
+                    alert('Vaga excluída e movida para a Pasta Lixo.');
+                }
+            }
+        }
+
+        function restaurarDaLixeira(trashId) {
+            if (confirm('Deseja restaurar este item da lixeira?')) {
+                const item = dbTrash.find(t => Number(t.id) === Number(trashId));
+                if (item) {
+                    if (item.tipo === 'Curso') dbMasterCourses.push(item.dados);
+                    else if (item.tipo === 'Vídeo Aula') dbVideos.push(item.dados);
+                    else if (item.tipo === 'Vaga') dbJobs.push(item.dados);
+                    else if (item.tipo.includes('Cliente')) dbUsers.push(item.dados);
+
+                    dbTrash = dbTrash.filter(t => Number(t.id) !== Number(trashId));
+                    localStorage.setItem('imp_db_trash', JSON.stringify(dbTrash));
+                    localStorage.setItem('imp_db_master_courses', JSON.stringify(dbMasterCourses));
+                    localStorage.setItem('imp_db_videos', JSON.stringify(dbVideos));
+                    localStorage.setItem('imp_db_jobs', JSON.stringify(dbJobs));
+                    localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+
+                    renderMasterTrash();
+                    renderMasterCourses();
+                    renderMasterVideos();
+                    renderMasterJobs();
+                    renderMasterClients();
+                    alert('Item restaurado com sucesso!');
+                }
+            }
+        }
+
+        function renderMasterTrash() {
+            const list = document.getElementById('master-trash-list');
+            if(!list) return;
+            list.innerHTML = '';
+            dbTrash.forEach(t => {
+                let nomeItem = t.dados.titulo || t.dados.title || t.dados.name || 'Item';
+                list.innerHTML += `
+                    <div class="p-3 bg-slate-50 border rounded-lg flex justify-between items-center text-sm">
+                        <div>
+                            <span class="text-[10px] bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded uppercase">${t.tipo}</span>
+                            <strong class="ml-2">${nomeItem}</strong>
+                            <p class="text-xs text-slate-400">Excluído em: ${t.dataExclusao}</p>
+                        </div>
+                        <button onclick="restaurarDaLixeira(${t.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded text-xs">Restaurar</button>
+                    </div>
+                `;
+            });
+            if(list.innerHTML === '') list.innerHTML = '<p class="text-xs text-slate-400">A pasta lixo está vazia.</p>';
+        }
+
+        function salvarCursoMaster(e) {
+            e.preventDefault();
+            const id = document.getElementById('mc-id').value;
+            const titulo = document.getElementById('mc-titulo').value.trim();
+            const categoria = document.getElementById('mc-cat').value.trim();
+            const desc = document.getElementById('mc-desc').value.trim();
+            const linkAnexo = document.getElementById('mc-anexo').value.trim();
+            const fileInput = document.getElementById('mc-file');
+
+            const finalizarSalvamento = (anexoFinal) => {
+                if (id !== "") {
+                    const c = dbMasterCourses.find(x => Number(x.id) === Number(id));
+                    if (c) { 
+                        c.titulo = titulo; c.categoria = categoria; c.desc = desc; 
+                        if (anexoFinal) c.anexo = anexoFinal; 
+                    }
+                } else {
+                    dbMasterCourses.push({ id: Date.now(), titulo, categoria, desc, anexo: anexoFinal || linkAnexo || '#' });
+                }
+
+                localStorage.setItem('imp_db_master_courses', JSON.stringify(dbMasterCourses));
+                fecharModal('modal-curso');
+                renderMasterCourses();
+                alert('Curso salvo com sucesso!');
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    finalizarSalvamento(uploadEvent.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                finalizarSalvamento(linkAnexo);
+            }
+        }
+
+        function salvarVideoMaster(e) {
+            e.preventDefault();
+            const id = document.getElementById('mv-id').value;
+            const titulo = document.getElementById('mv-titulo').value.trim();
+            const desc = document.getElementById('mv-desc').value.trim();
+            const linkUrl = document.getElementById('mv-url').value.trim();
+            const fileInput = document.getElementById('mv-file');
+
+            const finalizarSalvamento = (urlFinal) => {
+                if (id !== "") {
+                    const v = dbVideos.find(x => Number(x.id) === Number(id));
+                    if (v) { 
+                        v.titulo = titulo; v.desc = desc; 
+                        if (urlFinal) v.url = urlFinal; 
+                    }
+                } else {
+                    dbVideos.push({ id: Date.now(), titulo, url: urlFinal || linkUrl || '#', desc, likes: 0 });
+                }
+
+                localStorage.setItem('imp_db_videos', JSON.stringify(dbVideos));
+                fecharModal('modal-video');
+                renderMasterVideos();
+                alert('Vídeo aula salva com sucesso!');
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    finalizarSalvamento(uploadEvent.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                finalizarSalvamento(linkUrl);
+            }
+        }
+
+        function salvarVagaEmpresa(e) {
+            e.preventDefault();
+            
+            const vagaId = document.getElementById('jv-id').value;
+            const checkboxes = document.querySelectorAll('#jv-idiomas input[type="checkbox"]:checked');
+            let idiomasSelecionados = Array.from(checkboxes).map(cb => cb.value);
+            if (idiomasSelecionados.length === 0) idiomasSelecionados = ['Português'];
+
+            const trabSabado = document.getElementById('jv-trab-sabado').value;
+            const horarioSabado = document.getElementById('jv-horario-sabado').value.trim();
+            const infoSabado = trabSabado === 'Sim' ? `Sim (${horarioSabado})` : 'Não';
+
+            const graduacaoObr = document.getElementById('jv-graduacao-obrigatoria').value;
+            const qualFaculdade = graduacaoObr === 'Sim' ? document.getElementById('jv-qual-faculdade').value.trim() : 'Não Requerida';
+
+            const inputBeneficios = document.querySelectorAll('.input-beneficio');
+            let listaBeneficios = Array.from(inputBeneficios).map(i => i.value.trim()).filter(v => v !== '');
+            if (listaBeneficios.length === 0) listaBeneficios = ['Benefícios padrão da empresa'];
+
+            const remuneracaoVal = document.getElementById('jv-remuneracao').value.trim() || 'A combinar';
+            const tituloVaga = document.getElementById('jv-title').value.trim();
+
+            if (vagaId !== "") {
+                const j = dbJobs.find(x => Number(x.id) === Number(vagaId));
+                let alteracoes = [];
+                if (j) {
+                    if (j.title !== tituloVaga) alteracoes.push(`Título: "${j.title}" -> "${tituloVaga}"`);
+                    if (j.escolaridade !== document.getElementById('jv-escolaridade').value) alteracoes.push(`Escolaridade alterada`);
+                    if (j.remuneracao !== remuneracaoVal) alteracoes.push(`Remuneração alterada`);
+
+                    j.title = tituloVaga;
+                    j.requisitos = document.getElementById('jv-requisitos').value.trim();
+                    j.desc = document.getElementById('jv-desc').value.trim();
+                    j.escolaridade = document.getElementById('jv-escolaridade').value;
+                    j.graduacaoObrigatoria = graduacaoObr;
+                    j.qualFaculdade = qualFaculdade;
+                    j.nivelExcel = document.getElementById('jv-nivel-excel').value;
+                    j.tipoContratacao = document.getElementById('jv-contratacao').value;
+                    j.responsabilidades = document.getElementById('jv-resp').value.trim();
+                    j.idiomas = idiomasSelecionados.join(', ');
+                    j.modelo = document.getElementById('jv-modelo').value;
+                    j.escala = document.getElementById('jv-escala').value.trim();
+                    j.trabalhaSabado = infoSabado;
+                    j.beneficios = listaBeneficios.join(', ');
+                    j.remuneracao = remuneracaoVal;
+                }
+
+                if (usuarioAtual.role === 'master') {
+                    adicionarMensagemSistema(`O Consultor editou a sua vaga "${tituloVaga}". Alterações realizadas: ${alteracoes.length > 0 ? alteracoes.join(' | ') : 'Atualização geral de dados'}.`, 'Edição de Vaga pelo Consultor');
+                } else {
+                    adicionarMensagemSistema(`A vaga "${tituloVaga}" foi atualizada pela empresa ${usuarioAtual.name}.`, 'Atualização de Vaga');
+                }
+                alert('Vaga atualizada com sucesso!');
+            } else {
+                dbJobs.push({
+                    id: Date.now(),
+                    title: tituloVaga,
+                    empresa: usuarioAtual.role === 'empresa' ? usuarioAtual.name : 'Consultor',
+                    requisitos: document.getElementById('jv-requisitos').value.trim(),
+                    desc: document.getElementById('jv-desc').value.trim(),
+                    escolaridade: document.getElementById('jv-escolaridade').value,
+                    graduacaoObrigatoria: graduacaoObr,
+                    qualFaculdade: qualFaculdade,
+                    nivelExcel: document.getElementById('jv-nivel-excel').value,
+                    tipoContratacao: document.getElementById('jv-contratacao').value,
+                    responsabilidades: document.getElementById('jv-resp').value.trim(),
+                    idiomas: idiomasSelecionados.join(', '),
+                    modelo: document.getElementById('jv-modelo').value,
+                    escala: document.getElementById('jv-escala').value.trim(),
+                    trabalhaSabado: infoSabado,
+                    beneficios: listaBeneficios.join(', '),
+                    remuneracao: remuneracaoVal,
+                    aprovado: false,
+                    likes: 0
+                });
+                adicionarMensagemSistema(`Nova vaga cadastrada: "${tituloVaga}" pela empresa ${usuarioAtual.name}. Aguardando aprovação do Consultor.`, 'Cadastro de Vaga');
+                alert('Vaga cadastrada com sucesso!');
+            }
+
+            localStorage.setItem('imp_db_jobs', JSON.stringify(dbJobs));
+            fecharModal('modal-vaga');
+            if(usuarioAtual.role === 'empresa') {
+                renderEmpresaJobs();
+                renderMessages();
+            }
+            renderMasterJobs();
+        }
+
+        function cadastrarClientePublico(e) {
+            e.preventDefault();
+            const novo = { id: Date.now(), name: document.getElementById('rc-name').value.trim(), email: document.getElementById('rc-email').value.trim(), pass: document.getElementById('rc-pass').value.trim(), role: 'cliente', statusTalento: 'Em Desenvolvimento', discPerfil: 'Não realizado', experiencias: [], curriculoObj: {}, foto: '' };
+            dbUsers.push(novo);
+            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+            fecharModal('modal-register-client');
+            usuarioAtual = novo;
+            localStorage.setItem('imp_current_user', JSON.stringify(usuarioAtual));
+            iniciarApp();
+            alert('Conta criada com sucesso!');
+        }
+
+        function masterSalvarCliente(e) {
+            e.preventDefault();
+            dbUsers.push({ id: Date.now(), name: document.getElementById('mcc-name').value.trim(), email: document.getElementById('mcc-email').value.trim(), pass: document.getElementById('mcc-pass').value.trim(), role: 'cliente', statusTalento: 'Em Desenvolvimento', discPerfil: 'Não realizado', experiencias: [], curriculoObj: {}, foto: '' });
+            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+            fecharModal('modal-master-client');
+            renderMasterClients();
+            alert('Cliente cadastrado!');
+        }
+
+        function masterSalvarEmpresa(e) {
+            e.preventDefault();
+            dbUsers.push({ id: Date.now(), name: document.getElementById('me-name').value.trim(), representante: document.getElementById('me-rep').value.trim(), email: document.getElementById('me-email').value.trim(), pass: document.getElementById('me-pass').value.trim(), role: 'empresa', foto: '', cnpj: '', endereco: '', qntFuncionarios: 'Até 100' });
+            localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+            fecharModal('modal-master-empresa');
+            renderMasterEmpresas();
+            alert('Empresa cadastrada!');
+        }
+
+        function alternarAprovacaoVaga(id) {
+            const j = dbJobs.find(x => Number(x.id) === Number(id));
+            if(j) { 
+                j.aprovado = !j.aprovado; 
+                localStorage.setItem('imp_db_jobs', JSON.stringify(dbJobs)); 
+                renderMasterJobs(); 
+                if (j.aprovado) {
+                    adicionarMensagemSistema(`A vaga "${j.title}" foi aprovada pelo Consultor e já está visível para os talentos!`, 'Aprovação de Vaga');
+                }
+            }
+        }
+
+        function liberarCandidaturaRecrutador(candidaturaId) {
+            const cand = dbCandidaturas.find(c => Number(c.id) === Number(candidaturaId));
+            if (cand) {
+                cand.status = 'Liberado para o Recrutador';
+                cand.dataCandidatura = Date.now();
+                localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
+                renderMasterJobs();
+                alert('Candidatura liberada e enviada para o recrutador com sucesso!');
+            }
+        }
+
+        function candidatarVaga(id) {
+            const j = dbJobs.find(x => Number(x.id) === Number(id));
+            if (j) {
+                const jaCandidatou = dbCandidaturas.some(c => Number(c.vagaId) === Number(id) && c.talentoEmail === usuarioAtual.email);
+                if (jaCandidatou) {
+                    alert('Você já se candidatou a esta vaga anteriormente!');
+                    return;
+                }
+                dbCandidaturas.push({
+                    id: Date.now(),
+                    vagaId: j.id,
+                    vagaTitulo: j.title,
+                    empresa: j.empresa,
+                    talentoId: usuarioAtual.id,
+                    talentoNome: usuarioAtual.name,
+                    talentoEmail: usuarioAtual.email,
+                    talentoDisc: usuarioAtual.discPerfil || 'Não realizado',
+                    talentoCurriculo: usuarioAtual.curriculo || '',
+                    data: new Date().toLocaleDateString(),
+                    status: 'Aguardando Liberação do Consultor',
+                    dataCandidatura: Date.now()
+                });
+                localStorage.setItem('imp_db_candidaturas', JSON.stringify(dbCandidaturas));
+                alert('Candidatura enviada com sucesso! Ela foi encaminhada para a análise do Consultor antes de ir para o recrutador.');
+                renderMasterJobs();
+                renderClientVagas();
+            }
+        }
+
+        function curtirVaga(id) {
+            const j = dbJobs.find(x => Number(x.id) === Number(id));
+            if(j) { j.likes = (j.likes || 0) + 1; localStorage.setItem('imp_db_jobs', JSON.stringify(dbJobs)); renderClientVagas(); }
+        }
+
+        function curtirVideo(id) {
+            const v = dbVideos.find(x => Number(x.id) === Number(id));
+            if(v) { v.likes = (v.likes || 0) + 1; localStorage.setItem('imp_db_videos', JSON.stringify(dbVideos)); renderClientVideos(); renderMasterVideos(); }
+        }
+
+        function compartilharVaga(titulo) {
+            const baseUrl = window.location.href.split('#')[0];
+            const linkAcesso = `${baseUrl}#login`;
+            const textoCompartilhamento = `Confira a vaga "${titulo}" na Impulsionar! Faça login para se candidatar: ${linkAcesso}`;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(textoCompartilhamento).then(() => {
+                    alert('Link de acesso copiado para a área de transferência!');
+                }).catch(() => {
+                    prompt('Copie o link de acesso abaixo:', textoCompartilhamento);
+                });
+            } else {
+                prompt('Copie o link de acesso abaixo:', textoCompartilhamento);
+            }
+        }
+
+        function verDetalhesClienteMaster(clientId) {
+            talentoSelecionadoMaster = clientId;
+            const client = dbUsers.find(u => Number(u.id) === Number(clientId));
+            if (!client) return;
+
+            let curObj = client.curriculoObj || {};
+            document.getElementById('detail-client-title').innerText = `Gerenciar Talento: ${client.name}`;
+            document.getElementById('master-client-info-box').innerHTML = `
+                <div><strong>Nome:</strong> ${client.name}</div>
+                <div><strong>E-mail:</strong> ${client.email}</div>
+                <div><strong>Profissão:</strong> ${client.profissao || 'Não informada'}</div>
+                <div><strong>WhatsApp:</strong> ${client.whatsApp || 'Não informado'}</div>
+                <div><strong>Próximo Passo:</strong> ${client.proximoPasso || 'Não informado'}</div>
+                <div><strong>Status:</strong> <span class="text-indigo-700 font-bold">${client.statusTalento || 'Em Desenvolvimento'}</span></div>
+                <div class="col-span-3 bg-indigo-50 p-3 rounded-lg border border-indigo-100 mt-2"><strong>Perfil DISC Completo:</strong> ${client.discPerfil || 'Não realizado'}</div>
+            `;
+            
+            let expDispMaster = document.getElementById('master-client-experiencias-display');
+            expDispMaster.innerHTML = '';
+            if (curObj.experiencias && curObj.experiencias.length > 0) {
+                curObj.experiencias.forEach((ex, idx) => {
+                    expDispMaster.innerHTML += `
+                        <div class="p-3 bg-slate-50 border rounded-lg text-xs space-y-1">
+                            <p><strong>Experiência ${idx+1}:</strong> ${ex.cargo || 'N/D'} na empresa <strong>${ex.empresa || 'N/D'}</strong> (${ex.inicio || ''} - ${ex.saida || ''})</p>
+                            <p><strong>Atribuições:</strong> ${ex.atribuicoes || 'N/D'}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                expDispMaster.innerHTML = `<p class="text-xs text-slate-400">Nenhuma experiência detalhada no currículo.</p>`;
+            }
+
+            const resumeDisp = document.getElementById('master-client-resume-display');
+            resumeDisp.innerHTML = `
+                <p><strong>Resumo:</strong> ${curObj.resumo || 'N/D'}</p>
+                <p><strong>Formação:</strong> ${curObj.formacao || 'N/D'}</p>
+                <p><strong>Habilidades:</strong> ${curObj.habilidades || 'N/D'}</p>
+            `;
+            
+            const btnDel = document.getElementById('btn-delete-client');
+            if(btnDel) btnDel.onclick = function() { excluirClienteMaster(client.id); };
+
+            mudarSecao('master-client-detail');
+        }
+
+        function atualizarStatusTalentoMaster(novoStatus) {
+            const client = dbUsers.find(u => Number(u.id) === Number(talentoSelecionadoMaster));
+            if (client) {
+                client.statusTalento = novoStatus;
+                localStorage.setItem('imp_db_users', JSON.stringify(dbUsers));
+                mostrarFeedback('feedback-master-talento', `Status atualizado com sucesso para: ${novoStatus}`, 'blue');
+                verDetalhesClienteMaster(client.id);
+            }
+        }
+
+        function renderMasterClients() {
+            const tb = document.getElementById('master-clients-table');
+            tb.innerHTML = '';
+            dbUsers.filter(u => u.role === 'cliente').forEach(c => {
+                tb.innerHTML += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-4">${c.name}<br><span class="text-xs text-slate-400">${c.email}</span></td>
+                        <td class="p-4"><span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded text-xs font-bold">${c.statusTalento || 'Ativo'}</span></td>
+                        <td class="p-4 text-right space-x-2">
+                            <button onclick="verDetalhesClienteMaster(${c.id})" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-semibold">Ver</button>
+                            <button onclick="excluirClienteMaster(${c.id})" class="bg-red-50 text-red-600 px-2 py-1.5 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+            if(tb.innerHTML === '') tb.innerHTML = `<tr><td colspan="3" class="p-4 text-center text-slate-400">Nenhum cliente cadastrado.</td></tr>`;
+        }
+
+        function renderMasterEmpresas() {
+            const list = document.getElementById('master-empresas-list');
+            list.innerHTML = '';
+            dbUsers.filter(u => u.role === 'empresa').forEach(e => {
+                let statusPerfil = empresaEstaComPerfilCompleto(e) ? '<span class="text-emerald-600 font-bold">Perfil Completo</span>' : '<span class="text-amber-600 font-bold">Perfil Incompleto</span>';
+                let fotoEmp = e.foto ? `<img src="${e.foto}" class="w-10 h-10 rounded-full object-cover border mr-3">` : `<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 mr-3"><i class="fa-solid fa-building"></i></div>`;
+                list.innerHTML += `<div class="p-3 bg-slate-50 border rounded-lg flex justify-between items-center text-sm"><div class="flex items-center"> ${fotoEmp} <div><strong>${e.name}</strong> <span class="text-xs text-slate-400">(${e.email})</span><br><span class="text-xs text-slate-500">Rep: ${e.representante || 'N/D'} | CNPJ: ${e.cnpj || 'N/D'} | ${statusPerfil}</span></div></div></div>`;
+            });
+        }
+
+        function renderMasterCourses() {
+            const grid = document.getElementById('master-courses-grid');
+            grid.innerHTML = '';
+            dbMasterCourses.forEach(c => {
+                let anexoHtml = c.anexo && c.anexo.startsWith('data:') 
+                    ? `<a href="${c.anexo}" download="${c.titulo}.pdf" class="text-indigo-600 underline font-semibold"><i class="fa-solid fa-download mr-1"></i> Baixar Arquivo Anexado</a>`
+                    : `<a href="${c.anexo}" target="_blank" class="text-indigo-600 underline truncate">${c.anexo || 'Sem anexo'}</a>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-2 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2 py-0.5 rounded uppercase">${c.categoria}</span>
+                            <h3 class="font-bold text-indigo-950 mt-1">${c.titulo}</h3>
+                            <p class="text-xs text-slate-600">${c.desc}</p>
+                            <div class="text-xs text-slate-500 truncate mt-1"><strong>Material:</strong> ${anexoHtml}</div>
+                        </div>
+                        <div class="flex space-x-2 pt-3 border-t mt-3">
+                            <button onclick="abrirModalCurso(${c.id})" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-pen mr-1"></i> Editar</button>
+                            <button onclick="excluirCurso(${c.id})" class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-trash mr-1"></i> Excluir</button>
+                        </div>
+                    </div>
+                `;
+            });
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhum curso cadastrado ainda.</p>';
+        }
+
+        function renderMasterVideos() {
+            const grid = document.getElementById('master-videos-grid');
+            grid.innerHTML = '';
+            dbVideos.forEach(v => {
+                let videoHtml = v.url && v.url.startsWith('data:')
+                    ? `<video controls class="w-full h-32 bg-black rounded mt-1"><source src="${v.url}"></video>`
+                    : `<div class="p-2 bg-slate-50 rounded border text-xs text-indigo-600 truncate mt-1"><i class="fa-solid fa-play mr-1"></i> <a href="${v.url}" target="_blank" class="underline">Assistir Vídeo</a></div>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-2 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-indigo-950">${v.titulo}</h3>
+                            <p class="text-xs text-slate-600">${v.desc}</p>
+                            ${videoHtml}
+                            <p class="text-xs text-indigo-600 font-semibold mt-1"><i class="fa-solid fa-heart mr-1 text-red-500"></i> ${v.likes || 0} curtidas</p>
+                        </div>
+                        <div class="flex space-x-2 pt-3 border-t mt-3">
+                            <button onclick="abrirModalVideo(${v.id})" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-pen mr-1"></i> Editar</button>
+                            <button onclick="excluirVideo(${v.id})" class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-trash mr-1"></i> Excluir</button>
+                        </div>
+                    </div>
+                `;
+            });
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma vídeo aula cadastrada.</p>';
+        }
+
+        function renderMasterJobs() {
+            const grid = document.getElementById('master-jobs-grid');
+            grid.innerHTML = '';
+            dbJobs.forEach(j => {
+                const candidaturasVaga = dbCandidaturas.filter(c => Number(c.vagaId) === Number(j.id));
+                const fotoEmp = obterFotoEmpresa(j.empresa);
+                let imgEmp = fotoEmp ? `<img src="${fotoEmp}" class="w-10 h-10 rounded-full object-cover border mr-3">` : `<div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold mr-3"><i class="fa-solid fa-building"></i></div>`;
+
+                let candidaturasHtml = '';
+                if (candidaturasVaga.length > 0) {
+                    candidaturasHtml = `<div class="mt-3 pt-3 border-t space-y-1"><strong class="text-xs text-indigo-900">Gerenciamento de Candidaturas (${candidaturasVaga.length}):</strong>`;
+                    candidaturasVaga.forEach(cand => {
+                        let btnLiberar = cand.status.includes('Liberado') 
+                            ? `<span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded">Liberado ao Recrutador</span>`
+                            : `<button onclick="liberarCandidaturaRecrutador(${cand.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-xs font-semibold">Liberar para Recrutador</button>`;
+
+                        candidaturasHtml += `
+                            <div class="text-xs bg-slate-50 p-2.5 rounded border flex justify-between items-center mt-1">
+                                <div>
+                                    <span>👤 <strong>${cand.talentoNome}</strong> (${cand.talentoEmail})</span>
+                                    <p class="text-slate-500 mt-0.5">Status: <strong>${cand.status}</strong></p>
+                                </div>
+                                <div>${btnLiberar}</div>
+                            </div>
+                        `;
+                    });
+                    candidaturasHtml += `</div>`;
+                } else {
+                    candidaturasHtml = `<div class="mt-2 pt-2 border-t text-xs text-slate-400">Nenhuma candidatura recebida ainda.</div>`;
+                }
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-2 flex flex-col justify-between text-sm">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                ${imgEmp}
+                                <div>
+                                    <span class="text-[10px] bg-amber-50 text-amber-700 font-bold px-2 py-0.5 rounded uppercase">${j.empresa}</span>
+                                    <h3 class="font-bold text-indigo-950 mt-0.5">${j.title} (${j.tipoContratacao || 'CLT'})</h3>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Escolaridade:</strong> ${j.escolaridade} | <strong>Faculdade:</strong> ${j.qualFaculdade || 'N/D'} | <strong>Excel:</strong> ${j.nivelExcel}</p>
+                            <p class="text-xs text-slate-600"><strong>Benefícios:</strong> ${j.beneficios || 'N/D'}</p>
+                            <p class="text-xs text-slate-600"><strong>Remuneração:</strong> ${j.remuneracao || 'A combinar'} | <strong>Idiomas:</strong> ${j.idiomas}</p>
+                            ${candidaturasHtml}
+                        </div>
+                        <div class="pt-3 border-t mt-3 flex justify-between items-center">
+                            <span class="text-xs font-semibold ${j.aprovado ? 'text-emerald-600' : 'text-amber-600'}">${j.aprovado ? 'Aprovado' : 'Pendente'}</span>
+                            <div class="space-x-1 flex items-center">
+                                <button onclick="verDetalhesVaga(${j.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Detalhes</button>
+                                <button onclick="abrirModalEditarVaga(${j.id})" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-2.5 py-1 rounded text-xs font-semibold"><i class="fa-solid fa-pen mr-1"></i> Editar</button>
+                                <button onclick="alternarAprovacaoVaga(${j.id})" class="bg-indigo-600 text-white px-2.5 py-1 rounded text-xs font-semibold">${j.aprovado ? 'Desaprovar' : 'Aprovar'}</button>
+                                <button onclick="excluirVaga(${j.id})" class="bg-red-50 text-red-600 px-2.5 py-1 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma vaga cadastrada.</p>';
+        }
+
+        function renderClientCourses() {
+            const grid = document.getElementById('client-courses-grid');
+            grid.innerHTML = '';
+            dbMasterCourses.forEach(c => {
+                let btnAnexo = c.anexo && c.anexo.startsWith('data:')
+                    ? `<a href="${c.anexo}" download="${c.titulo}.pdf" class="block text-center mt-2 bg-indigo-600 text-white py-2 rounded text-xs font-semibold"><i class="fa-solid fa-download mr-1"></i> Baixar Arquivo Anexado</a>`
+                    : `<a href="${c.anexo}" target="_blank" class="block text-center mt-2 bg-indigo-600 text-white py-2 rounded text-xs font-semibold"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Acessar Material Externo</a>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-3">
+                        <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded uppercase">${c.categoria}</span>
+                        <h3 class="font-bold text-indigo-950">${c.titulo}</h3>
+                        <p class="text-xs text-slate-600">${c.desc}</p>
+                        ${btnAnexo}
+                    </div>
+                `;
+            });
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhum curso disponível.</p>';
+        }
+
+        function renderClientVideos() {
+            const grid = document.getElementById('client-videos-grid');
+            grid.innerHTML = '';
+            dbVideos.forEach(v => {
+                let videoView = v.url && v.url.startsWith('data:')
+                    ? `<video controls class="w-full h-36 bg-black rounded"><source src="${v.url}"></video>`
+                    : `<div class="p-2 bg-slate-50 rounded border text-xs text-indigo-600 truncate"><i class="fa-solid fa-play mr-1"></i> <a href="${v.url}" target="_blank" class="underline">Assistir Vídeo</a></div>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-3 shadow-sm">
+                        <h3 class="font-bold text-indigo-950">${v.titulo}</h3>
+                        <p class="text-xs text-slate-600">${v.desc}</p>
+                        ${videoView}
+                        <div class="flex space-x-2 pt-2 border-t">
+                            <button onclick="curtirVideo(${v.id})" class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-heart mr-1"></i> Curtir (${v.likes || 0})</button>
+                            <button onclick="compartilharVaga('${v.titulo}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-share mr-1"></i> Compartilhar</button>
+                        </div>
+                    </div>
+                `;
+            });
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma vídeo aula disponível.</p>';
+        }
+
+        function renderClientVagas() {
+            const container = document.getElementById('client-vagas-container');
+            container.innerHTML = '';
+
+            let vagasAprovadas = dbJobs.filter(j => j.aprovado);
+            let gruposCargos = {};
+
+            vagasAprovadas.forEach(j => {
+                let tituloLower = j.title.toLowerCase();
+                let categoria = 'Outras Oportunidades';
+                if (tituloLower.includes('desenvolvedor') || tituloLower.includes('analista') || tituloLower.includes('ti') || tituloLower.includes('software')) categoria = 'Tecnologia & Inovação';
+                else if (tituloLower.includes('logística') || tituloLower.includes('operacoes') || tituloLower.includes('armazém') || tituloLower.includes('gerente')) categoria = 'Operações & Logística';
+                else if (tituloLower.includes('administrativo') || tituloLower.includes('financeiro') || tituloLower.includes('rh')) categoria = 'Administrativo & Corporativo';
+
+                if (!gruposCargos[categoria]) gruposCargos[categoria] = [];
+                gruposCargos[categoria].push(j);
+            });
+
+            for (let cat in gruposCargos) {
+                let htmlVagas = '';
+                gruposCargos[cat].forEach(j => {
+                    const jaCandidatou = dbCandidaturas.some(c => Number(c.vagaId) === Number(j.id) && c.talentoEmail === usuarioAtual.email);
+                    const fotoEmp = obterFotoEmpresa(j.empresa);
+                    let imgEmp = fotoEmp ? `<img src="${fotoEmp}" class="w-10 h-10 rounded-full object-cover border mr-3">` : `<div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold mr-3"><i class="fa-solid fa-building"></i></div>`;
+
+                    let btnCandidatura = jaCandidatou 
+                        ? `<button disabled class="flex-1 bg-slate-200 text-slate-600 py-2 rounded text-xs font-semibold cursor-not-allowed"><i class="fa-solid fa-check mr-1"></i> Candidatura Enviada</button>`
+                        : `<button onclick="candidatarVaga(${j.id})" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded text-xs font-semibold"><i class="fa-solid fa-check mr-1"></i> Candidatar-se</button>`;
+
+                    htmlVagas += `
+                        <div class="bg-white p-5 rounded-xl border space-y-2 shadow-sm text-sm">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    ${imgEmp}
+                                    <div>
+                                        <span class="text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2 py-0.5 rounded uppercase">${j.empresa}</span>
+                                        <h3 class="font-bold text-indigo-950 text-base mt-0.5">${j.title}</h3>
+                                    </div>
+                                </div>
+                                <span class="text-xs bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded">${j.tipoContratacao || 'CLT'}</span>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Escolaridade:</strong> ${j.escolaridade} | <strong>Faculdade:</strong> ${j.qualFaculdade || 'N/D'} | <strong>Excel:</strong> ${j.nivelExcel}</p>
+                            <p class="text-xs text-slate-600"><strong>Remuneração:</strong> <span class="text-emerald-700 font-bold">${j.remuneracao || 'A combinar'}</span></p>
+                            <p class="text-xs text-slate-600"><strong>Benefícios:</strong> ${j.beneficios || 'N/D'}</p>
+                            <p class="text-xs text-slate-600"><strong>Modelo:</strong> ${j.modelo} | <strong>Escala:</strong> ${j.escala}</p>
+                            <div class="pt-3 flex space-x-2">
+                                ${btnCandidatura}
+                                <button onclick="verDetalhesVaga(${j.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded text-xs font-semibold"><i class="fa-solid fa-eye mr-1"></i> Detalhes</button>
+                                <button onclick="curtirVaga(${j.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded text-xs"><i class="fa-solid fa-heart text-red-500 mr-1"></i> (${j.likes || 0})</button>
+                                <button onclick="compartilharVaga('${j.title}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded text-xs"><i class="fa-solid fa-share"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-indigo-950 text-base border-b pb-1"><i class="fa-solid fa-layer-group mr-2 text-indigo-600"></i>${cat}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${htmlVagas}</div>
+                    </div>
+                `;
+            }
+
+            if(container.innerHTML === '') container.innerHTML = '<p class="text-xs text-slate-400">Nenhuma vaga aprovada disponível no momento.</p>';
+        }
+
+        function renderEmpresaJobs() {
+            const grid = document.getElementById('empresa-jobs-grid');
+            grid.innerHTML = '';
+            dbJobs.filter(j => j.empresa === usuarioAtual.name).forEach(j => {
+                const fotoEmp = obterFotoEmpresa(j.empresa);
+                let imgEmp = fotoEmp ? `<img src="${fotoEmp}" class="w-10 h-10 rounded-full object-cover border mr-3">` : `<div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold mr-3"><i class="fa-solid fa-building"></i></div>`;
+
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border space-y-2 flex justify-between items-center text-sm">
+                        <div class="flex items-center">
+                            ${imgEmp}
+                            <div>
+                                <h3 class="font-bold text-indigo-950">${j.title} (${j.tipoContratacao || 'CLT'})</h3>
+                                <p class="text-xs text-slate-600"><strong>Remuneração:</strong> ${j.remuneracao || 'A combinar'} | <strong>Benefícios:</strong> ${j.beneficios || 'N/D'}</p>
+                                <span class="text-xs font-bold ${j.aprovado ? 'text-emerald-600' : 'text-amber-600'}">${j.aprovado ? 'Aprovado pelo Consultor' : 'Aguardando Aprovação'}</span>
+                            </div>
+                        </div>
+                        <div class="space-x-1 flex">
+                            <button onclick="abrirModalEditarVaga(${j.id})" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-3 py-2 rounded text-xs font-semibold"><i class="fa-solid fa-pen mr-1"></i> Editar</button>
+                            <button onclick="excluirVaga(${j.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-2 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma vaga cadastrada.</p>';
+        }
+
+        function renderMessages() {
+            const container = document.getElementById('messages-container');
+            if(!container) return;
+            container.innerHTML = '';
+            dbMessages.forEach(m => {
+                container.innerHTML += `
+                    <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs space-y-1">
+                        <div class="flex justify-between text-blue-900 font-bold">
+                            <span><i class="fa-solid fa-bell mr-1"></i> ${m.tipo}</span>
+                            <span class="text-slate-400 font-normal">${m.data}</span>
+                        </div>
+                        <p class="text-blue-800">${m.texto}</p>
+                    </div>
+                `;
+            });
+            if(container.innerHTML === '') container.innerHTML = '<p class="text-xs text-slate-400">Nenhuma mensagem no momento.</p>';
+        }
+
+        function renderEmpresaHirings() {
+            const list = document.getElementById('empresa-hiring-tracking-list');
+            list.innerHTML = '';
+            dbHirings.filter(h => h.empresa === usuarioAtual.name).forEach(h => {
+                list.innerHTML += `<div class="p-4 bg-slate-50 rounded-xl border flex justify-between items-center text-sm"><div><strong>${h.talento}</strong> (${h.cargo})<p class="text-xs text-slate-500">Início: ${h.dataInicio}</p></div><span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-3 py-1 rounded-full">${h.status}</span></div>`;
+            });
+            if(list.innerHTML === '') list.innerHTML = '<p class="text-xs text-slate-400">Nenhuma contratação registrada.</p>';
+        }
+
+        function salvarContratacao(e) {
+            e.preventDefault();
+            dbHirings.push({ id: Date.now(), talento: document.getElementById('hc-talento').value, empresa: usuarioAtual.name, cargo: document.getElementById('hc-cargo').value, dataInicio: document.getElementById('hc-data').value, status: 'Mês 1 (Experiência)' });
+            localStorage.setItem('imp_db_hirings', JSON.stringify(dbHirings));
+            fecharModal('modal-contratacao');
+            renderEmpresaHirings();
+            alert('Contratação registrada!');
+        }
     </script>
 </body>
 </html>
