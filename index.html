@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impulsionar - Ecossistema Completo (v64.0)</title>
+    <title>Impulsionar - Ecossistema Completo (v63.3)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -45,7 +45,6 @@
                 <p class="font-bold">Acessos Rápidos para Testes:</p>
                 <p><strong>Consultor:</strong> impulsionar@gmail.com / 123456</p>
                 <p><strong>Empresa:</strong> empresa@impulsionar.com / 123456</p>
-                <p><strong>Talento:</strong> lazaronettosalles0067@gmail.com / 123456</p>
             </div>
         </div>
     </div>
@@ -398,18 +397,6 @@
                     <div id="client-videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                 </section>
 
-                <!-- NOVA SEÇÃO: ÁREA DE INTERTERIMENTO / FEED DE VÍDEOS COM CURTIDAS E COMENTÁRIOS -->
-                <section id="sec-client-entretenimento" class="space-y-6 hidden">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-lg font-bold text-slate-800"><i class="fa-solid fa-clapperboard mr-2 text-indigo-600"></i>Área de Entretenimento & Vídeos</h2>
-                            <p class="text-xs text-slate-500">Compartilhe momentos, curta e comente nos vídeos da comunidade.</p>
-                        </div>
-                        <button onclick="abrirModal('modal-novo-video-feed')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm"><i class="fa-solid fa-video mr-2"></i>Postar Vídeo</button>
-                    </div>
-                    <div id="feed-videos-container" class="max-w-2xl mx-auto space-y-6"></div>
-                </section>
-
                 <section id="sec-client-testes" class="space-y-6 hidden">
                     <h2 class="text-lg font-bold text-slate-800">Testes de Análise & Provas Comportamentais (DISC 15 Perguntas)</h2>
                     <div class="bg-white p-6 rounded-xl border space-y-6 max-w-2xl mx-auto">
@@ -611,27 +598,6 @@
                 <input type="text" id="hc-cargo" required placeholder="Cargo" class="w-full border rounded-lg p-2.5">
                 <input type="date" id="hc-data" required class="w-full border rounded-lg p-2.5">
                 <div class="flex justify-end space-x-2 pt-2"><button type="button" onclick="fecharModal('modal-contratacao')" class="px-4 py-2 text-slate-500">Cancelar</button><button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Iniciar</button></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL POSTAR VÍDEO NO FEED (ENTRETENIMENTO) -->
-    <div id="modal-novo-video-feed" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white rounded-xl max-w-md w-full p-6 space-y-4">
-            <h3 class="text-lg font-bold text-indigo-950"><i class="fa-solid fa-video mr-2 text-indigo-600"></i>Postar Vídeo na Comunidade</h3>
-            <form onsubmit="postarVideoFeed(event)" class="space-y-3 text-sm">
-                <div>
-                    <label class="block text-xs font-semibold uppercase mb-1 text-slate-600">Legenda / Descrição *</label>
-                    <input type="text" id="feed-vid-legenda" required placeholder="Ex: Meu novo projeto em andamento!" class="w-full border rounded-lg p-2.5">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase mb-1 text-slate-600">Arquivo de Vídeo (MP4, WebM) *</label>
-                    <input type="file" id="feed-vid-file" required accept="video/*" class="w-full border rounded-lg p-2 bg-slate-50 text-xs">
-                </div>
-                <div class="flex justify-end space-x-2 pt-2">
-                    <button type="button" onclick="fecharModal('modal-novo-video-feed')" class="px-4 py-2 text-slate-500">Cancelar</button>
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Publicar</button>
-                </div>
             </form>
         </div>
     </div>
@@ -974,10 +940,6 @@
         localStorage.setItem('imp_db_master_courses', JSON.stringify(dbMasterCourses));
 
         let dbVideos = JSON.parse(localStorage.getItem('imp_db_videos')) || [];
-        let dbFeedVideos = JSON.parse(localStorage.getItem('imp_db_feed_videos')) || [
-            { id: 1, autor: 'Consultor Master', legenda: 'Dicas essenciais para entrevistas de sucesso!', videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4', curtidas: 5, comentarios: [{ autor: 'Lazaro Neto', texto: 'Excelente vídeo, muito útil!' }] }
-        ];
-
         let dbJobs = JSON.parse(localStorage.getItem('imp_db_jobs')) || [
             { id: 999, title: 'GERENTE DE OPERACAOES', empresa: 'TechCorp Brasil', aprovado: true }
         ];
@@ -1025,6 +987,17 @@
             } else {
                 alert(mensagem);
             }
+        }
+
+        function adicionarMensagemSistema(texto, tipo = 'Vaga') {
+            dbMessages.unshift({
+                id: Date.now(),
+                texto: texto,
+                data: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
+                tipo: tipo
+            });
+            localStorage.setItem('imp_db_messages', JSON.stringify(dbMessages));
+            if (usuarioAtual && usuarioAtual.role === 'empresa') renderMessages();
         }
 
         function handleLogin(e) {
@@ -1253,16 +1226,14 @@
                     ${commonNav}
                     <a href="#" onclick="mudarSecao('client-cursos')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-book w-5"></i><span>Cursos</span></a>
                     <a href="#" onclick="mudarSecao('client-videos')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-video w-5"></i><span>Vídeo Aulas</span></a>
-                    <a href="#" onclick="mudarSecao('client-entretenimento')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-clapperboard w-5"></i><span>Entretenimento & Feed</span></a>
                     <a href="#" onclick="mudarSecao('client-testes')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-clipboard-question w-5"></i><span>Testes & Provas (DISC)</span></a>
                     <a href="#" onclick="mudarSecao('client-curriculo')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-file-lines w-5"></i><span>Meu Currículo</span></a>
                     <a href="#" onclick="mudarSecao('client-vagas')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-briefcase w-5"></i><span>Vagas de Emprego</span></a>
                     <a href="#" onclick="mudarSecao('client-consultor')" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-indigo-800 text-white"><i class="fa-solid fa-headset w-5"></i><span>Interação / Consultor</span></a>
                 `;
-                mudarSecao('client-videos');
+                mudarSecao('client-cursos');
                 renderClientCourses();
                 renderClientVideos();
-                renderFeedVideos();
                 renderClientVagas();
                 renderClientChat();
                 renderClientAgenda();
@@ -1295,7 +1266,7 @@
         }
 
         function mudarSecao(id) {
-            ['sec-perfil-cliente', 'sec-perfil-empresa', 'sec-mensagens', 'sec-master-clients', 'sec-master-client-detail', 'sec-master-empresas', 'sec-master-cursos', 'sec-master-videos', 'sec-master-curadoria', 'sec-master-consultoria', 'sec-master-lixo', 'sec-client-cursos', 'sec-client-videos', 'sec-client-entretenimento', 'sec-client-testes', 'sec-client-curriculo', 'sec-client-vagas', 'sec-client-consultor', 'sec-empresa-vagas', 'sec-empresa-talentos', 'sec-empresa-entrevistas', 'sec-empresa-historico', 'sec-empresa-experiencia'].forEach(s => {
+            ['sec-perfil-cliente', 'sec-perfil-empresa', 'sec-mensagens', 'sec-master-clients', 'sec-master-client-detail', 'sec-master-empresas', 'sec-master-cursos', 'sec-master-videos', 'sec-master-curadoria', 'sec-master-consultoria', 'sec-master-lixo', 'sec-client-cursos', 'sec-client-videos', 'sec-client-testes', 'sec-client-curriculo', 'sec-client-vagas', 'sec-client-consultor', 'sec-empresa-vagas', 'sec-empresa-talentos', 'sec-empresa-entrevistas', 'sec-empresa-historico', 'sec-empresa-experiencia'].forEach(s => {
                 const el = document.getElementById(s);
                 if(el) el.classList.add('hidden');
             });
@@ -1305,8 +1276,6 @@
             if (id === 'empresa-talentos') renderEmpresaTalentos();
             else if (id === 'empresa-entrevistas') renderEmpresaEntrevistas();
             else if (id === 'empresa-historico') renderEmpresaHistorico();
-            else if (id === 'client-videos') renderClientVideos();
-            else if (id === 'client-entretenimento') renderFeedVideos();
         }
 
         function verDetalhesCandidato(candidaturaId) {
@@ -1526,7 +1495,7 @@
             if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma candidatura liberada no momento.</p>';
         }
 
-        // RENDERIZAÇÃO ATUALIZADA DA ABA ENTREVISTAS AGENDADAS COM LINKS CLICÁVEIS DE VÍDEO
+        // RENDERIZAÇÃO ATUALIZADA DA ABA ENTREVISTAS AGENDADAS
         function renderEmpresaEntrevistas() {
             const grid = document.getElementById('empresa-entrevistas-grid');
             grid.innerHTML = '';
@@ -1559,13 +1528,12 @@
                             <p class="text-slate-700"><strong>Detalhes / Link Inicial:</strong> ${cand.detalhesEntrevista || 'N/D'}</p>
                         </div>
 
-                        <!-- 1. Link para enviar videochamada por mensagem (Com botão de Abertura Rápida) -->
+                        <!-- 1. Link para enviar videochamada por mensagem -->
                         <div class="p-4 bg-slate-50 border rounded-xl space-y-2">
                             <label class="block text-xs font-bold uppercase text-slate-700"><i class="fa-solid fa-video mr-1 text-indigo-600"></i> Enviar Link de Videochamada para o Candidato</label>
                             <div class="flex space-x-2">
                                 <input type="text" id="input-link-video-${cand.id}" placeholder="Cole o link da videochamada aqui (ex: https://meet...)" class="flex-1 border rounded-lg p-2 text-xs bg-white">
-                                <button onclick="enviarLinkVideorapido(${cand.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-sm">Enviar Link</button>
-                                <button onclick="iniciarVideochamada()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs font-semibold flex items-center shadow-sm" title="Abrir Videochamada Agora"><i class="fa-solid fa-video mr-1.5"></i> Abrir Vídeo</button>
+                                <button onclick="enviarLinkVideorapido(${cand.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold">Enviar Link</button>
                             </div>
                         </div>
 
@@ -1699,208 +1667,6 @@
             renderMasterChat();
         }
 
-        // FUNÇÃO DE RENDERIZAÇÃO DE VÍDEO AULAS PARA A ABA 1 (CARREGAR VÍDEO DO COMPUTADOR OU LINK)
-        function renderClientVideos() {
-            const grid = document.getElementById('client-videos-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-
-            let videosMaster = JSON.parse(localStorage.getItem('imp_db_videos')) || [];
-            
-            if (videosMaster.length === 0) {
-                grid.innerHTML = '<p class="text-xs text-slate-400">Nenhuma vídeo aula cadastrada pelo consultor no momento.</p>';
-                return;
-            }
-
-            videosMaster.forEach(v => {
-                let sourceHtml = '';
-                if (v.fileData) {
-                    sourceHtml = `<video controls class="w-full h-48 object-cover rounded-lg bg-black"><source src="${v.fileData}" type="video/mp4">Seu navegador não suporta vídeo.</video>`;
-                } else if (v.url) {
-                    sourceHtml = `<iframe src="${v.url}" class="w-full h-48 rounded-lg" frameborder="0" allowfullscreen></iframe>`;
-                } else {
-                    sourceHtml = `<div class="w-full h-48 bg-slate-900 rounded-lg flex items-center justify-center text-white text-xs">Vídeo indisponível</div>`;
-                }
-
-                grid.innerHTML += `
-                    <div class="bg-white rounded-xl border p-4 space-y-3 shadow-sm">
-                        ${sourceHtml}
-                        <h3 class="font-bold text-indigo-950 text-sm">${v.titulo}</h3>
-                        <p class="text-xs text-slate-600">${v.descricao || ''}</p>
-                    </div>
-                `;
-            });
-        }
-
-        // SALVAR VÍDEO NO PAINEL MASTER (COM SUPORTE A ARQUIVO DIRETO DO COMPUTADOR)
-        function salvarVideoMaster(e) {
-            e.preventDefault();
-            const titulo = document.getElementById('mv-titulo').value.trim();
-            const desc = document.getElementById('mv-desc').value.trim();
-            const url = document.getElementById('mv-url').value.trim();
-            const fileInput = document.getElementById('mv-file');
-
-            let videos = JSON.parse(localStorage.getItem('imp_db_videos')) || [];
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    videos.push({
-                        id: Date.now(),
-                        titulo: titulo,
-                        descricao: desc,
-                        fileData: event.target.result,
-                        url: ''
-                    });
-                    localStorage.setItem('imp_db_videos', JSON.stringify(videos));
-                    fecharModal('modal-video');
-                    renderMasterVideos();
-                    alert('Vídeo aula adicionada com sucesso!');
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                videos.push({
-                    id: Date.now(),
-                    titulo: titulo,
-                    descricao: desc,
-                    fileData: '',
-                    url: url
-                });
-                localStorage.setItem('imp_db_videos', JSON.stringify(videos));
-                fecharModal('modal-video');
-                renderMasterVideos();
-                alert('Vídeo aula adicionada com sucesso!');
-            }
-        }
-
-        function renderMasterVideos() {
-            const grid = document.getElementById('master-videos-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            let videos = JSON.parse(localStorage.getItem('imp_db_videos')) || [];
-            
-            videos.forEach(v => {
-                grid.innerHTML += `
-                    <div class="bg-white p-4 rounded-xl border space-y-2 text-sm shadow-sm">
-                        <h3 class="font-bold text-indigo-950">${v.titulo}</h3>
-                        <p class="text-xs text-slate-500">${v.descricao}</p>
-                    </div>
-                `;
-            });
-            if(grid.innerHTML === '') grid.innerHTML = '<p class="text-xs text-slate-400">Nenhum vídeo cadastrado.</p>';
-        }
-
-        // FUNÇÕES PARA A ÁREA DE ENTRETENIMENTO (POSTAR, CURTIR E COMENTAR VÍDEOS)
-        function postarVideoFeed(e) {
-            e.preventDefault();
-            const legenda = document.getElementById('feed-vid-legenda').value.trim();
-            const fileInput = document.getElementById('feed-vid-file');
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    dbFeedVideos.unshift({
-                        id: Date.now(),
-                        autor: usuarioAtual.name,
-                        legenda: legenda,
-                        videoUrl: event.target.result,
-                        curtidas: 0,
-                        comentarios: []
-                    });
-                    localStorage.setItem('imp_db_feed_videos', JSON.stringify(dbFeedVideos));
-                    fecharModal('modal-novo-video-feed');
-                    renderFeedVideos();
-                    alert('Vídeo postado na comunidade com sucesso!');
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-
-        function curtirVideoFeed(id) {
-            const v = dbFeedVideos.find(x => x.id === id);
-            if (v) {
-                v.curtidas = (v.curtidas || 0) + 1;
-                localStorage.setItem('imp_db_feed_videos', JSON.stringify(dbFeedVideos));
-                renderFeedVideos();
-            }
-        }
-
-        function comentarVideoFeed(e, id) {
-            e.preventDefault();
-            const input = document.getElementById(`input-comentario-${id}`);
-            const texto = input.value.trim();
-            if (!texto) return;
-
-            const v = dbFeedVideos.find(x => x.id === id);
-            if (v) {
-                if (!v.comentarios) v.comentarios = [];
-                v.comentarios.push({
-                    autor: usuarioAtual.name,
-                    texto: texto,
-                    data: new Date().toLocaleDateString()
-                });
-                localStorage.setItem('imp_db_feed_videos', JSON.stringify(dbFeedVideos));
-                input.value = '';
-                renderFeedVideos();
-            }
-        }
-
-        function renderFeedVideos() {
-            const container = document.getElementById('feed-videos-container');
-            if (!container) return;
-            container.innerHTML = '';
-
-            dbFeedVideos = JSON.parse(localStorage.getItem('imp_db_feed_videos')) || dbFeedVideos;
-
-            if (dbFeedVideos.length === 0) {
-                container.innerHTML = '<p class="text-xs text-slate-400 text-center">Nenhum vídeo postado na comunidade ainda.</p>';
-                return;
-            }
-
-            dbFeedVideos.forEach(v => {
-                let comentariosHtml = '';
-                if (v.comentarios && v.comentarios.length > 0) {
-                    v.comentarios.forEach(c => {
-                        comentariosHtml += `<div class="p-2 bg-slate-50 rounded border text-xs mb-1"><strong>${c.autor}:</strong> ${c.texto}</div>`;
-                    });
-                } else {
-                    comentariosHtml = `<p class="text-xs text-slate-400">Nenhum comentário ainda.</p>`;
-                }
-
-                container.innerHTML += `
-                    <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-slate-800">${v.autor}</h4>
-                                <span class="text-[10px] text-slate-400">Publicação na Comunidade</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-slate-700">${v.legenda}</p>
-                        <video controls class="w-full h-72 object-cover rounded-xl bg-black">
-                            <source src="${v.videoUrl}" type="video/mp4">
-                            Seu navegador não suporta vídeo.
-                        </video>
-                        <div class="flex items-center space-x-4 pt-2 border-t">
-                            <button onclick="curtirVideoFeed(${v.id})" class="flex items-center space-x-1.5 text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 px-3 py-1.5 rounded-lg">
-                                <i class="fa-solid fa-heart"></i>
-                                <span>Curtir (${v.curtidas || 0})</span>
-                            </button>
-                        </div>
-                        <div class="space-y-2 pt-2 border-t">
-                            <div class="max-h-32 overflow-y-auto space-y-1">${comentariosHtml}</div>
-                            <form onsubmit="comentarVideoFeed(event, ${v.id})" class="flex space-x-2 pt-1">
-                                <input type="text" id="input-comentario-${v.id}" placeholder="Escreva um comentário..." class="flex-1 border rounded-lg p-2 text-xs bg-slate-50">
-                                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-semibold">Comentar</button>
-                            </form>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
         function clientEnviarMidia(e) {}
         function masterEnviarMidia(e) {}
         function masterSalvarAgenda(e) { e.preventDefault(); fecharModal('modal-agenda-master'); }
@@ -1911,16 +1677,34 @@
         function verDetalhesVaga(id) { abrirModal('modal-detalhes-vaga'); }
         function abrirModalCurso(id) { abrirModal('modal-curso'); }
         function abrirModalVideo(id) { abrirModal('modal-video'); }
+        function enviarParaLixeira(tipo, dados) {}
+        function excluirClienteMaster(id) {}
+        function excluirCurso(id) {}
+        function excluirVideo(id) {}
+        function excluirVaga(id) {}
+        function restaurarDaLixeira(id) {}
+        function renderMasterTrash() {}
         function salvarCursoMaster(e) { e.preventDefault(); fecharModal('modal-curso'); }
+        function salvarVideoMaster(e) { e.preventDefault(); fecharModal('modal-video'); }
         function salvarVagaEmpresa(e) { e.preventDefault(); fecharModal('modal-vaga'); }
         function cadastrarClientePublico(e) { e.preventDefault(); fecharModal('modal-register-client'); }
         function masterSalvarCliente(e) { e.preventDefault(); fecharModal('modal-master-client'); }
         function masterSalvarEmpresa(e) { e.preventDefault(); fecharModal('modal-master-empresa'); }
+        function alternarAprovacaoVaga(id) {}
+        function liberarCandidaturaRecrutador(id) {}
+        function candidatarVaga(id) {}
+        function curtirVaga(id) {}
+        function curtirVideo(id) {}
+        function compartilharVaga(t) {}
+        function verDetalhesClienteMaster(id) {}
+        function atualizarStatusTalentoMaster(s) {}
         function renderMasterClients() {}
         function renderMasterEmpresas() {}
         function renderMasterCourses() {}
+        function renderMasterVideos() {}
         function renderMasterJobs() {}
         function renderClientCourses() {}
+        function renderClientVideos() {}
         function renderClientVagas() {}
         function renderEmpresaJobs() {}
         function renderMessages() {}
